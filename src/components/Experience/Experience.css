@@ -136,7 +136,7 @@
 }
 
 .tl-role {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
 }
@@ -170,7 +170,7 @@
 
 .tl-period {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   color: var(--faint);
   white-space: nowrap;
   padding-top: 0.1rem;
@@ -188,14 +188,14 @@
 
 .tl-company {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--cyan);
 }
 
 .tl-location {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   color: var(--faint);
 }
 
@@ -217,7 +217,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.65;
 }

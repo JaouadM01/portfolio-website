@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaouad M'chichi — Style Guide v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c10;
+  --bg2:#0d1117;
+  --bg3:#111620;
+  --surface:#141a24;
+  --surface2:#1a2130;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --cyan:#00e5ff;
+  --cyan-dim:rgba(0,229,255,0.12);
+  --cyan-border:rgba(0,229,255,0.25);
+  --purple:#7c5cfc;
+  --purple-dim:rgba(124,92,252,0.1);
+  --green:#00ff9d;
+  --text:#e8eaf0;
+  --muted:#8b92a5;
+  --faint:#3a4255;
+  --danger:#ff4d4d;
+  --warning:#ffb830;
+  --success:#00ff9d;
+  --info:#00e5ff;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--display);font-size:.9rem;line-height:1.7;color:var(--text);background:var(--bg);padding:0 0 6rem}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,12,16,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--mono);font-size:.85rem;font-weight:700;color:var(--cyan);text-decoration:none;letter-spacing:.05em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .15s}
+.nav-links a:hover{color:var(--cyan)}
+
+/* ── COVER ── */
+.cover{max-width:820px;margin:0 auto;padding:5rem 2rem 3.5rem;border-bottom:1px solid var(--border)}
+.cover-eyebrow{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.cover-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--cyan)}
+.cover h1{font-family:var(--display);font-size:3.4rem;font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:.7rem;color:#fff}
+.cover h1 span{color:var(--cyan)}
+.cover-sub{font-size:.95rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:1.5rem}
+.cover-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--cyan-border);padding:.2rem .7rem;border-radius:999px;letter-spacing:.05em}
+
+/* ── PAGE ── */
+.page{max-width:820px;margin:0 auto;padding:0 2rem}
+
+/* ── SECTION ── */
+.section{margin-bottom:4.5rem;padding-top:1rem}
+.section-label{display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem}
+.step-num{width:26px;height:26px;border-radius:6px;background:var(--cyan-dim);border:1px solid var(--cyan-border);color:var(--cyan);font-family:var(--mono);font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-title{font-family:var(--display);font-size:1.3rem;font-weight:700;color:#fff}
+.section-desc{font-size:.82rem;color:var(--muted);padding-left:2.3rem;margin-bottom:2rem}
+.sub{margin-bottom:2.5rem}
+.sub-label{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+
+/* ── CALLOUT ── */
+.callout{border-left:2px solid var(--cyan);padding:.75rem 1rem;font-size:.83rem;background:var(--cyan-dim);border-radius:0 6px 6px 0;margin-bottom:1rem;color:var(--muted);line-height:1.6}
+.callout strong{color:var(--text)}
+
+/* ── CHECKLIST ── */
+.checklist{display:flex;flex-direction:column;gap:.35rem}
+.check-item{display:flex;align-items:flex-start;gap:.55rem;font-size:.83rem;padding:.5rem .75rem;background:var(--surface);border:1px solid var(--border);border-radius:7px;color:var(--muted)}
+.check-icon{width:16px;height:16px;border-radius:4px;background:var(--cyan-dim);border:1px solid var(--cyan-border);color:var(--cyan);font-size:.58rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem}
+
+/* ── THREE WORDS ── */
+.three-words{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.word-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1rem;text-align:center;transition:border-color .15s}
+.word-card:hover{border-color:var(--border2)}
+.word-card-word{font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--cyan);margin-bottom:.4rem;letter-spacing:.04em}
+.word-card-desc{font-size:.77rem;color:var(--muted);line-height:1.55}
+
+/* ── COLOR GRID ── */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.65rem}
+.color-swatch{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.color-bar{height:72px}
+.color-info{padding:.55rem .65rem;background:var(--surface)}
+.color-name{font-size:.72rem;font-weight:700;color:var(--text);display:block}
+.color-hex{font-family:var(--mono);font-size:.64rem;color:var(--muted)}
+.color-var{font-family:var(--mono);font-size:.6rem;color:var(--faint);display:block;margin-top:.1rem}
+
+/* ── TYPE ── */
+.font-pair{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
+.font-card{padding:1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.font-role{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:.2rem}
+.font-name-label{font-family:var(--mono);font-size:.75rem;font-weight:700;color:var(--cyan);margin-bottom:.7rem}
+.font-abc{margin-top:.6rem;font-family:var(--mono);font-size:.66rem;color:var(--faint)}
+.type-scale{display:flex;flex-direction:column}
+.type-row{display:flex;align-items:baseline;gap:1.5rem;padding:.9rem 0;border-bottom:1px solid var(--border)}
+.type-row:last-child{border-bottom:none}
+.type-meta{min-width:130px;flex-shrink:0}
+.type-meta-label{font-family:var(--mono);font-size:.64rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.type-meta-size{font-family:var(--mono);font-size:.67rem;color:var(--cyan)}
+
+/* ── PREVIEW BOX ── */
+.preview-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:.9rem}
+
+/* ── BUTTONS ── */
+.btn{font-family:var(--display);font-size:.84rem;font-weight:700;padding:.55rem 1.25rem;border-radius:8px;cursor:pointer;min-height:42px;display:inline-flex;align-items:center;gap:.4rem;border:1.5px solid transparent;line-height:1;transition:all .15s;letter-spacing:.01em}
+.btn-primary{background:var(--cyan);color:#080c10;border-color:var(--cyan)}
+.btn-primary:hover{background:#00ccff;border-color:#00ccff}
+.btn-secondary{background:transparent;color:var(--cyan);border-color:var(--cyan)}
+.btn-secondary:hover{background:var(--cyan-dim)}
+.btn-ghost{background:transparent;color:var(--muted);border-color:var(--border2)}
+.btn-ghost:hover{background:var(--surface);color:var(--text)}
+.btn-danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+.btn-danger:hover{background:#e63333}
+.btn-disabled{background:var(--surface);color:var(--faint);border-color:var(--border);cursor:not-allowed}
+.btn-sm{font-size:.78rem;padding:.38rem .9rem;min-height:34px}
+
+/* ── CONTRAST ── */
+.contrast-list{display:flex;flex-direction:column;gap:.4rem;margin-top:.75rem}
+.contrast-row{display:flex;align-items:center;gap:1rem;padding:.55rem .75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.contrast-sample{width:120px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;flex-shrink:0;font-family:var(--mono)}
+.contrast-info{flex:1;font-size:.78rem;color:var(--muted)}
+.wcag{font-family:var(--mono);font-size:.62rem;font-weight:700;padding:.14rem .44rem;border-radius:999px;flex-shrink:0}
+.wcag-aaa{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.2)}
+.wcag-aa{background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.2)}
+
+/* ── ALERTS ── */
+.alert{display:flex;align-items:flex-start;gap:.65rem;padding:.8rem 1rem;border-radius:8px;border-left:2px solid;font-size:.83rem;line-height:1.55;margin-bottom:.45rem}
+.alert-success{background:rgba(0,255,157,.06);border-color:var(--green);color:var(--green)}
+.alert-warning{background:rgba(255,184,48,.06);border-color:var(--warning);color:var(--warning)}
+.alert-error{background:rgba(255,77,77,.06);border-color:var(--danger);color:var(--danger)}
+.alert-info{background:var(--cyan-dim);border-color:var(--cyan);color:var(--cyan)}
+
+/* ── PROJECT CARD ── */
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+.project-card:hover{border-color:var(--cyan-border);transform:translateY(-3px)}
+.project-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;color:var(--faint);letter-spacing:.1em;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.project-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(255,255,255,.02) 24px,rgba(255,255,255,.02) 25px),repeating-linear-gradient(90deg,transparent,transparent 24px,rgba(255,255,255,.02) 24px,rgba(255,255,255,.02) 25px)}
+.project-thumb-label{position:relative;z-index:1;text-align:center}
+.project-body{padding:.9rem 1rem}
+.project-name{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.project-desc{font-size:.78rem;color:var(--muted);line-height:1.55;margin-bottom:.65rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.55rem}
+.tag{font-family:var(--mono);font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:5px;border:.5px solid}
+.tag-tech{background:var(--cyan-dim);border-color:var(--cyan-border);color:var(--cyan)}
+.tag-type{background:var(--purple-dim);border-color:rgba(124,92,252,.25);color:var(--purple)}
+.project-footer{padding:.6rem 1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.66rem;color:var(--faint)}
+.project-link{color:var(--cyan);text-decoration:none;font-weight:700}
+.project-link:hover{text-decoration:underline}
+
+/* ── EXPERIENCE ITEM ── */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--border));opacity:.3}
+.tl-item{display:grid;grid-template-columns:20px 1fr;gap:1.25rem;padding:0 0 2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;margin-top:.15rem}
+.tl-dot-inner{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+.tl-content{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem}
+.tl-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.35rem;flex-wrap:wrap}
+.tl-title{font-size:.9rem;font-weight:700;color:#fff}
+.tl-badge{font-family:var(--mono);font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:5px;white-space:nowrap}
+.badge-stage{background:rgba(0,229,255,.1);border:.5px solid rgba(0,229,255,.25);color:var(--cyan)}
+.badge-school{background:rgba(124,92,252,.1);border:.5px solid rgba(124,92,252,.25);color:var(--purple)}
+.badge-freelance{background:rgba(0,255,157,.1);border:.5px solid rgba(0,255,157,.25);color:var(--green)}
+.tl-meta{font-family:var(--mono);font-size:.68rem;color:var(--faint);margin-bottom:.5rem}
+.tl-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ── HERO MOCKUP ── */
+.hero-mock{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero-mock::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 32px,rgba(255,255,255,.015) 32px,rgba(255,255,255,.015) 33px),repeating-linear-gradient(90deg,transparent,transparent 32px,rgba(255,255,255,.015) 32px,rgba(255,255,255,.015) 33px);pointer-events:none}
+.hero-avail{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--green);background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:.25rem .8rem;border-radius:999px;margin-bottom:1.2rem;position:relative;z-index:1}
+.hero-avail::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-name{font-family:var(--display);font-size:2.2rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:.4rem;position:relative;z-index:1}
+.hero-name span{color:var(--cyan)}
+.hero-tagline{font-size:.88rem;color:var(--muted);margin-bottom:1.4rem;position:relative;z-index:1}
+.hero-ctas{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* ── CONTACT MOCKUP ── */
+.contact-mock{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;max-width:420px}
+.contact-mock h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.25rem}
+.contact-mock p{font-size:.8rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6}
+.form-group{margin-bottom:.75rem}
+.form-label{font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:.35rem}
+.form-input{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:7px;padding:.55rem .8rem;font-family:var(--display);font-size:.84rem;color:var(--text);outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--cyan)}
+.form-input::placeholder{color:var(--faint)}
+textarea.form-input{resize:none;min-height:90px;line-height:1.6}
+
+/* ── TOV TABLE ── */
+.tov-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.tov-table th{text-align:left;padding:.5rem .75rem;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.tov-table th.bad{color:var(--danger)}.tov-table th.good{color:var(--green)}
+.tov-table td{padding:.6rem .75rem;vertical-align:top;border-bottom:1px solid var(--border);line-height:1.55;color:var(--muted)}
+.tov-table tr:last-child td{border-bottom:none}
+.tov-table td.bad{color:#ff8080;background:rgba(255,77,77,.04)}
+.tov-table td.good{color:#80ffc4;background:rgba(0,255,157,.04)}
+
+/* ── RADIUS ── */
+.radius-row{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-end}
+.radius-item{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.radius-box{width:52px;height:52px;border:1.5px solid var(--cyan);background:var(--cyan-dim)}
+.radius-label{font-family:var(--mono);font-size:.62rem;color:var(--muted);text-align:center;line-height:1.4}
+
+/* ── SPEC TABLE ── */
+.spec-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.spec-table th{text-align:left;padding:.5rem .75rem;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--surface);color:var(--cyan);border:1px solid var(--border)}
+.spec-table td{padding:.5rem .75rem;border:1px solid var(--border);vertical-align:top;line-height:1.5;color:var(--muted)}
+.spec-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.spec-table td:first-child{font-family:var(--mono);font-weight:700;color:var(--cyan)}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{border:none;border-top:1px solid var(--border);margin:3.5rem 0}
+
+@media(max-width:600px){
+  .three-words,.font-pair{grid-template-columns:1fr}
+  .cover h1{font-size:2.4rem}
+  .project-grid{grid-template-columns:1fr!important}
+}
+@media print{
+  .nav{display:none}
+  body{background:#fff;color:#000;padding:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="nav-logo">jm<span>();</span></a>
+  <ul class="nav-links">
+    <li><a href="#doelgroep">Doelgroep</a></li>
+    <li><a href="#kleuren">Kleuren</a></li>
+    <li><a href="#typografie">Typografie</a></li>
+    <li><a href="#componenten">Componenten</a></li>
+    <li><a href="#voorbeelden">Voorbeelden</a></li>
+    <li><a href="#tov">Tone of Voice</a></li>
+    <li><a href="#vormen">Vormen</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Style Guide · v1.0</div>
+  <h1>Jaouad M'chichi<br><span>— Design Document</span></h1>
+  <p class="cover-sub">De visuele en communicatieve basis van het portfolio. Donker, tech-achtig en professioneel — gebouwd om zowel stagebedrijven als freelance klanten te overtuigen.</p>
+  <div class="cover-pills">
+    <span class="pill">.NET / C#</span>
+    <span class="pill">Java</span>
+    <span class="pill">JavaScript</span>
+    <span class="pill">Python</span>
+    <span class="pill">React</span>
+    <span class="pill">React Native</span>
+    <span class="pill">Angular</span>
+    <span class="pill">GitLab CI/CD</span>
+    <span class="pill">Docker</span>
+    <span class="pill">Axon Server</span>
+    <span class="pill">AI-integraties</span>
+    <span class="pill">UI/UX</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ── 1. DOELGROEP ── -->
+<div class="section" id="doelgroep">
+  <div class="section-label"><div class="step-num">1</div><div class="section-title">Doelgroep & Sfeer</div></div>
+  <div class="section-desc">Voor wie is dit portfolio, en welke sfeer moet het uitstralen?</div>
+
+  <div class="sub">
+    <div class="sub-label">1.1 · Gebruikerstypen</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.75rem">
+      <div style="padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px">
+        <div style="font-weight:700;font-size:.88rem;color:#fff;margin-bottom:.25rem">Stagebedrijf</div>
+        <div style="font-size:.78rem;color:var(--muted);line-height:1.55">HR of technische lead die snel wil zien of een kandidaat matcht. Weinig tijd — eerste indruk telt.</div>
+        <span style="display:inline-block;margin-top:.55rem;font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--cyan);background:var(--cyan-dim);border:1px solid var(--cyan-border);padding:.12rem .5rem;border-radius:999px">Stage recruiter</span>
+      </div>
+      <div style="padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px">
+        <div style="font-weight:700;font-size:.88rem;color:#fff;margin-bottom:.25rem">Freelance klant</div>
+        <div style="font-size:.78rem;color:var(--muted);line-height:1.55">KMO of zelfstandige die een developer zoekt voor een specifiek project. Wil bewijs zien van afgewerkt werk.</div>
+        <span style="display:inline-block;margin-top:.55rem;font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--purple);background:var(--purple-dim);border:1px solid rgba(124,92,252,.25);padding:.12rem .5rem;border-radius:999px">Opdrachtgever</span>
+      </div>
+      <div style="padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px">
+        <div style="font-weight:700;font-size:.88rem;color:#fff;margin-bottom:.25rem">Medewerker / Peer</div>
+        <div style="font-size:.78rem;color:var(--muted);line-height:1.55">Collega-developer of medestudent. Kijkt naar de GitHub-links en tech-stack. Wil code zien, niet alleen mooie plaatjes.</div>
+        <span style="display:inline-block;margin-top:.55rem;font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--green);background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:.12rem .5rem;border-radius:999px">Developer</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">1.2 · Kern van het portfolio</div>
+    <div class="callout"><strong>Dit is geen CV-site.</strong> Het is een levend bewijs van wat Jaouad kan bouwen. Elk designkeuze — van de donkere achtergrond tot de monospace labels — zegt: "ik begrijp hoe goede software eruitziet."</div>
+    <div class="callout">De twee doelgroepen leven samen op één pagina. De Hero spreekt beiden aan met een dubbele CTA. Projecten en ervaring zijn gelabeld zodat elke bezoeker meteen ziet wat relevant is.</div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">1.3 · Drie kernwoorden</div>
+    <div class="three-words">
+      <div class="word-card"><div class="word-card-word">Competent</div><div class="word-card-desc">De site zelf is het bewijs. Een goed gebouwde portfolio zegt meer dan tien regels op een CV.</div></div>
+      <div class="word-card"><div class="word-card-word">Helder</div><div class="word-card-desc">Geen overbodige info. Bezoekers zien in 10 seconden wie je bent, wat je hebt gebouwd en hoe ze contact opnemen.</div></div>
+      <div class="word-card"><div class="word-card-word">Beschikbaar</div><div class="word-card-desc">Een badge in de hero geeft meteen aan voor wat en wanneer Jaouad beschikbaar is. Geen giswerk.</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 2. KLEUREN ── -->
+<div class="section" id="kleuren">
+  <div class="section-label"><div class="step-num">2</div><div class="section-title">Kleurenpalet</div></div>
+  <div class="section-desc">Diepzwart als basis — cyaan als ankerpunt, semantische kleuren voor feedback.</div>
+
+  <div class="sub">
+    <div class="sub-label">2.1 · Palet & CSS variabelen</div>
+    <div class="callout">Cyaan verwijst naar code, terminals en technologie. Gecombineerd met diepe donkere achtergronden voelt de site als een goed ontworpen IDE — professioneel en kalm, zonder kil te zijn.</div>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="color-bar" style="background:#080c10"></div><div class="color-info"><span class="color-name">Achtergrond</span><span class="color-hex">#080c10</span><span class="color-var">--bg</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#0d1117"></div><div class="color-info"><span class="color-name">Achtergrond 2</span><span class="color-hex">#0d1117</span><span class="color-var">--bg2</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#141a24"></div><div class="color-info"><span class="color-name">Surface</span><span class="color-hex">#141a24</span><span class="color-var">--surface</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#1a2130"></div><div class="color-info"><span class="color-name">Surface 2</span><span class="color-hex">#1a2130</span><span class="color-var">--surface2</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#00e5ff"></div><div class="color-info"><span class="color-name">Accent</span><span class="color-hex">#00e5ff</span><span class="color-var">--cyan</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#7c5cfc"></div><div class="color-info"><span class="color-name">Secundair</span><span class="color-hex">#7c5cfc</span><span class="color-var">--purple</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#e8eaf0"></div><div class="color-info"><span class="color-name">Tekst</span><span class="color-hex">#e8eaf0</span><span class="color-var">--text</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#8b92a5"></div><div class="color-info"><span class="color-name">Gedempd</span><span class="color-hex">#8b92a5</span><span class="color-var">--muted</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#ff4d4d"></div><div class="color-info"><span class="color-name">Gevaar</span><span class="color-hex">#ff4d4d</span><span class="color-var">--danger</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#00ff9d"></div><div class="color-info"><span class="color-name">Succes</span><span class="color-hex">#00ff9d</span><span class="color-var">--success</span></div></div>
+      <div class="color-swatch"><div class="color-bar" style="background:#ffb830"></div><div class="color-info"><span class="color-name">Waarschuwing</span><span class="color-hex">#ffb830</span><span class="color-var">--warning</span></div></div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">2.2 · Gebruik per situatie</div>
+    <table class="spec-table">
+      <thead><tr><th>Variabele</th><th>Gebruik</th></tr></thead>
+      <tbody>
+        <tr><td>--bg</td><td>Pagina-achtergrond, absolute basis</td></tr>
+        <tr><td>--bg2</td><td>Project-thumbnails, code-blokken, preview areas</td></tr>
+        <tr><td>--surface</td><td>Cards, formulier-inputs, navbar-achtergrond</td></tr>
+        <tr><td>--cyan</td><td>Primaire knop, links, hover-states, accentlijnen</td></tr>
+        <tr><td>--purple</td><td>Secundaire badges (Freelance), tags, decoratief</td></tr>
+        <tr><td>--muted</td><td>Beschrijvingstekst, metadata, placeholders</td></tr>
+        <tr><td>--border</td><td>Standaard rand van alle componenten (7% wit)</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:1.5rem">
+      <div class="sub-label" style="margin-top:0">Tech stack — tag-categorieën</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+        <span class="tag tag-tech">.NET / C#</span>
+        <span class="tag tag-tech">Java</span>
+        <span class="tag tag-tech">JavaScript</span>
+        <span class="tag tag-tech">Python</span>
+        <span class="tag tag-tech">React</span>
+        <span class="tag tag-tech">React Native</span>
+        <span class="tag tag-tech">Angular</span>
+        <span class="tag tag-tech">GitLab CI/CD</span>
+        <span class="tag tag-tech">Docker</span>
+        <span class="tag tag-tech">Axon Server</span>
+        <span class="tag tag-tech">Claude Skills</span>
+        <span class="tag tag-type">Stage</span>
+        <span class="tag tag-type">Freelance</span>
+        <span class="tag tag-type">Schoolproject</span>
+        <span class="tag tag-type">Persoonlijk</span>
+      </div>
+      <div class="checklist" style="margin-top:.75rem">
+        <div class="check-item"><div class="check-icon">✓</div>Cyaan tags (<code style="font-family:var(--mono);font-size:.75rem;color:var(--cyan)">.tag-tech</code>) = technologie of taal</div>
+        <div class="check-item"><div class="check-icon">✓</div>Paarse tags (<code style="font-family:var(--mono);font-size:.75rem;color:var(--purple)">.tag-type</code>) = type project (Stage, Freelance, Schoolproject, Persoonlijk)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 3. TYPOGRAFIE ── -->
+<div class="section" id="typografie">
+  <div class="section-label"><div class="step-num">3</div><div class="section-title">Typografie</div></div>
+  <div class="section-desc">Syne voor display-tekst — JetBrains Mono voor labels, code en accenten.</div>
+
+  <div class="sub">
+    <div class="sub-label">3.1 · Lettertypes</div>
+    <div class="font-pair">
+      <div class="font-card">
+        <div class="font-role">Koppen & display</div>
+        <div class="font-name-label">Syne (sans-serif)</div>
+        <div style="font-family:var(--display);font-size:1.8rem;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.03em">Jaouad M'chichi</div>
+        <div style="font-family:var(--display);font-size:.9rem;color:var(--muted);margin-top:.4rem">Software Developer</div>
+        <div class="font-abc">AaBbCcDdEe 0123456789</div>
+      </div>
+      <div class="font-card">
+        <div class="font-role">Labels, tags & code</div>
+        <div class="font-name-label">JetBrains Mono</div>
+        <div style="font-family:var(--mono);font-size:.85rem;color:var(--cyan);line-height:1.7">const dev = {<br>&nbsp;&nbsp;name: "Jaouad",<br>&nbsp;&nbsp;open: true<br>};</div>
+        <div class="font-abc" style="color:var(--cyan)">AaBbCcDdEe 0123456789</div>
+      </div>
+    </div>
+    <div class="callout"><strong>Waarom Syne?</strong> Het brede, geometrische karakter past bij tech-portfolios zonder generiek te zijn. De hoge font-weight (800) in titels creëert een sterk visueel ankerpunt op de donkere achtergrond.</div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">3.2 · Type scale</div>
+    <div class="callout"><strong>Harde grens:</strong> lopende tekst is nooit kleiner dan 15px (.9375rem).</div>
+    <div class="type-scale">
+      <div class="type-row"><div class="type-meta"><div class="type-meta-label">H1 · Hero naam</div><div class="type-meta-size">3rem–3.5rem · 800</div></div><div style="font-family:var(--display);font-size:2.2rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1">Jaouad M'chichi</div></div>
+      <div class="type-row"><div class="type-meta"><div class="type-meta-label">H2 · Sectieopschrift</div><div class="type-meta-size">1.6rem · 700</div></div><div style="font-family:var(--display);font-size:1.6rem;font-weight:700;color:#fff">Projecten</div></div>
+      <div class="type-row"><div class="type-meta"><div class="type-meta-label">H3 · Kaarttitel</div><div class="type-meta-size">1rem · 700</div></div><div style="font-family:var(--display);font-size:1rem;font-weight:700;color:#fff">Portfolio Website</div></div>
+      <div class="type-row"><div class="type-meta"><div class="type-meta-label">Body · beschrijving</div><div class="type-meta-size">.9375rem · 400</div></div><div style="color:var(--muted)">React-applicatie voor het beheren van studenten en cursussen. Gebouwd met een REST API in Node.js.</div></div>
+      <div class="type-row"><div class="type-meta"><div class="type-meta-label">Label · mono</div><div class="type-meta-size">.7rem · 700</div></div><div style="font-family:var(--mono);font-size:.7rem;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase">Schoolproject</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 4. COMPONENTEN ── -->
+<div class="section" id="componenten">
+  <div class="section-label"><div class="step-num">4</div><div class="section-title">Componenten</div></div>
+  <div class="section-desc">Knoppen, meldingen en formulieren — met contrastwaarden.</div>
+
+  <div class="sub">
+    <div class="sub-label">4.1 · Knoppen — alle varianten</div>
+    <div class="preview-box">
+      <button class="btn btn-primary">Bekijk projecten</button>
+      <button class="btn btn-secondary">Neem contact op</button>
+      <button class="btn btn-ghost">GitHub →</button>
+      <button class="btn btn-danger">Verwijderen</button>
+      <button class="btn btn-disabled" disabled>Versturen…</button>
+    </div>
+    <div class="contrast-list">
+      <div class="contrast-row"><div class="contrast-sample" style="background:#00e5ff;color:#080c10">Zwart op cyaan</div><div class="contrast-info">Primaire knop — #080c10 tekst op #00e5ff</div><span class="wcag wcag-aaa">AAA 14.3:1</span></div>
+      <div class="contrast-row"><div class="contrast-sample" style="background:transparent;color:#00e5ff;border:1.5px solid #00e5ff">Cyaan op donker</div><div class="contrast-info">Secundaire knop — #00e5ff tekst op #080c10</div><span class="wcag wcag-aaa">AAA 14.3:1</span></div>
+      <div class="contrast-row"><div class="contrast-sample" style="background:transparent;color:#8b92a5;border:1.5px solid rgba(255,255,255,.13)">Grijs op donker</div><div class="contrast-info">Ghost knop — #8b92a5 tekst op #080c10</div><span class="wcag wcag-aa">AA 5.8:1</span></div>
+      <div class="contrast-row"><div class="contrast-sample" style="background:#ff4d4d;color:#fff">Wit op rood</div><div class="contrast-info">Gevaar knop — #fff tekst op #ff4d4d</div><span class="wcag wcag-aa">AA 4.6:1</span></div>
+    </div>
+    <div class="checklist" style="margin-top:.75rem">
+      <div class="check-item"><div class="check-icon">✓</div>Maximaal één primaire knop per sectie</div>
+      <div class="check-item"><div class="check-icon">✓</div>Gebruik werkwoorden als tekst: "Bekijk projecten", "Stuur bericht" — nooit "Klik hier"</div>
+      <div class="check-item"><div class="check-icon">✓</div>Minimale klikgrootte: 42px hoogte op desktop, 48px op mobiel</div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">4.2 · Formuliervelden</div>
+    <div class="preview-box" style="align-items:stretch;flex-direction:column;max-width:380px">
+      <div class="form-group">
+        <label class="form-label">Naam</label>
+        <input class="form-input" type="text" placeholder="Jouw naam" value="Jan De Smedt">
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <input class="form-input" type="email" placeholder="email@bedrijf.be">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Bericht</label>
+        <textarea class="form-input" placeholder="Vertel me over je project of stage-aanvraag…"></textarea>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div>Focus-state: border wordt cyaan — altijd zichtbaar</div>
+      <div class="check-item"><div class="check-icon">✓</div>Labels in JetBrains Mono, uppercase — duidelijk onderscheiden van invoertekst</div>
+      <div class="check-item"><div class="check-icon">✓</div>Placeholder-tekst in --faint (#3a4255) — nooit verward met echte invoer</div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">4.3 · Meldingen</div>
+    <div class="preview-box" style="flex-direction:column;align-items:stretch">
+      <div class="alert alert-success">✓&nbsp;&nbsp;Bericht verzonden! Ik neem zo snel mogelijk contact met je op.</div>
+      <div class="alert alert-warning">⚠&nbsp;&nbsp;Vul alle verplichte velden in voor je het formulier verstuurt.</div>
+      <div class="alert alert-error">✕&nbsp;&nbsp;Versturen mislukt. Controleer je verbinding en probeer opnieuw.</div>
+      <div class="alert alert-info">ℹ&nbsp;&nbsp;Je bericht wordt rechtstreeks naar mijn inbox gestuurd via EmailJS.</div>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div>Altijd icoon + tekst samen — nooit alleen kleur als signaal</div>
+      <div class="check-item"><div class="check-icon">✓</div>Schrijf in gewone taal — geen foutcodes, geen technisch jargon</div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 5. VISUELE VOORBEELDEN ── -->
+<div class="section" id="voorbeelden">
+  <div class="section-label"><div class="step-num">5</div><div class="section-title">Visuele voorbeelden</div></div>
+  <div class="section-desc">De componenten zoals ze er in de echte portfolio uitzien.</div>
+
+  <div class="sub">
+    <div class="sub-label">5.1 · Hero sectie — mockup</div>
+    <div class="callout">De hero is het eerste dat een bezoeker ziet. De beschikbaarheidsbadge communiceert meteen status. De twee CTA-knoppen spreken elk een andere doelgroep aan.</div>
+    <div class="hero-mock">
+      <div class="hero-avail">Beschikbaar voor stage & freelance</div>
+      <div class="hero-name">Jaouad<br><span>M'chichi</span></div>
+      <div class="hero-tagline">Van .NET en Java tot React en AI-integraties — ik bouw het hele traject, van ontwerp tot deploy.</div>
+      <div class="hero-ctas">
+        <button class="btn btn-primary">Bekijk mijn projecten</button>
+        <button class="btn btn-secondary">Neem contact op</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">5.2 · Projectkaarten — card grid</div>
+    <div class="callout">Elke kaart toont een screenshot-placeholder, naam, korte beschrijving, tech-tags en een badge die het type aangeeft. Klikbaar voor een modal met meer info.</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem" class="project-grid">
+      <div class="project-card">
+        <div class="project-thumb"><div class="project-thumb-label">[ screenshot ]<br>dashboard.png</div></div>
+        <div class="project-body">
+          <div class="project-name">Event-driven Platform</div>
+          <div class="project-desc">Microservices-architectuur met Axon Server. Event sourcing en CQRS in Java / .NET.</div>
+          <div class="project-tags">
+            <span class="tag tag-tech">Java</span>
+            <span class="tag tag-tech">.NET / C#</span>
+            <span class="tag tag-tech">Axon Server</span>
+            <span class="tag tag-tech">Docker</span>
+            <span class="tag tag-type">Stage</span>
+          </div>
+        </div>
+        <div class="project-footer"><span>2024</span><a class="project-link" href="#">GitHub →</a></div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb"><div class="project-thumb-label">[ screenshot ]<br>chatbot.png</div></div>
+        <div class="project-body">
+          <div class="project-name">AI Chatbot Integratie</div>
+          <div class="project-desc">Claude Skills-gebaseerde chatbot ingebouwd in een bestaande webapplicatie. Python backend.</div>
+          <div class="project-tags">
+            <span class="tag tag-tech">Python</span>
+            <span class="tag tag-tech">Claude Skills</span>
+            <span class="tag tag-tech">React</span>
+            <span class="tag tag-type">Freelance</span>
+          </div>
+        </div>
+        <div class="project-footer"><span>2024</span><a class="project-link" href="#">GitHub →</a></div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb"><div class="project-thumb-label">[ screenshot ]<br>portfolio.png</div></div>
+        <div class="project-body">
+          <div class="project-name">Portfolio Site</div>
+          <div class="project-desc">Dit portfolio — gebouwd met React, Vite en gewone CSS. CI/CD via GitLab, gehost op Vercel.</div>
+          <div class="project-tags">
+            <span class="tag tag-tech">React</span>
+            <span class="tag tag-tech">CSS</span>
+            <span class="tag tag-tech">GitLab CI/CD</span>
+            <span class="tag tag-type">Persoonlijk</span>
+          </div>
+        </div>
+        <div class="project-footer"><span>2025</span><a class="project-link" href="#">GitHub →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">5.3 · Ervaring — tijdlijn</div>
+    <div class="callout">Elke ervaringsregel heeft een badge die het type aangeeft zodat een recruiter en een freelance klant meteen de relevante items spotten.</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+        <div class="tl-content">
+          <div class="tl-header"><span class="tl-title">Backend & Cloud Developer</span><span class="tl-badge badge-stage">Stage</span></div>
+          <div class="tl-meta">2024 · Bedrijfsnaam, Stad</div>
+          <div class="tl-desc">Cloud-infrastructuur opgezet en event-driven architectuur gebouwd met Axon Server. GitLab CI/CD-pipelines van build tot deploy via Docker. Java en .NET / C# in een productie-omgeving.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+        <div class="tl-content">
+          <div class="tl-header"><span class="tl-title">AI-integratie & Chatbot</span><span class="tl-badge badge-freelance">Freelance</span></div>
+          <div class="tl-meta">2024 · Zelfstandige opdracht</div>
+          <div class="tl-desc">Claude Skills-gebaseerde chatbot geïntegreerd in een bestaande webapplicatie. Python backend, React frontend. Volledig traject van ontwerp tot publicatie.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+        <div class="tl-content">
+          <div class="tl-header"><span class="tl-title">Full-stack Web & Mobile Projecten</span><span class="tl-badge badge-school">Schoolproject</span></div>
+          <div class="tl-meta">2023 – 2024 · Hogeschool</div>
+          <div class="tl-desc">Meerdere projecten in React, React Native en Angular. UI/UX van wireframe tot publicatie. JavaScript en Python voor backend-logica en data-verwerking.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">5.4 · Contactformulier — mockup</div>
+    <div class="callout">De intro-tekst boven het formulier spreekt beide doelgroepen expliciet aan. EmailJS zorgt dat berichten rechtstreeks in de inbox belanden — geen backend vereist.</div>
+    <div class="preview-box" style="justify-content:center">
+      <div class="contact-mock">
+        <h3>Laten we samenwerken</h3>
+        <p>Stage-aanvraag of freelance project? Stuur me een bericht en ik reageer zo snel mogelijk.</p>
+        <div class="form-group">
+          <label class="form-label">Naam</label>
+          <input class="form-input" type="text" placeholder="Jouw naam">
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input class="form-input" type="email" placeholder="email@bedrijf.be">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bericht</label>
+          <textarea class="form-input" placeholder="Vertel me over je project of stage-aanvraag…"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.25rem">Bericht sturen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 6. TONE OF VOICE ── -->
+<div class="section" id="tov">
+  <div class="section-label"><div class="step-num">6</div><div class="section-title">Tone of Voice</div></div>
+  <div class="section-desc">Direct, zelfverzekerd en menselijk — niet arrogant, niet overdreven bescheiden.</div>
+
+  <div class="sub">
+    <div class="sub-label">6.1 · Wel vs. niet</div>
+    <table class="tov-table">
+      <thead><tr><th class="bad">✗&nbsp; Niet zo</th><th class="good">✓&nbsp; Zo wel</th></tr></thead>
+      <tbody>
+        <tr><td class="bad">Ik ben een gepassioneerde developer die van coderen houdt! 🚀</td><td class="good">Ik bouw webapplicaties met React en Node.js.</td></tr>
+        <tr><td class="bad">Check out mijn awesome projects below!!</td><td class="good">Hieronder een overzicht van wat ik heb gebouwd.</td></tr>
+        <tr><td class="bad">Ik ben nog maar student maar ik doe mijn best</td><td class="good">Student software development — beschikbaar voor stage en freelance.</td></tr>
+        <tr><td class="bad">Neem contact met mij op voor meer informatie over mijn persoon</td><td class="good">Stage-aanvraag of project? Stuur me een bericht.</td></tr>
+        <tr><td class="bad">Hard-working team player with excellent communication skills</td><td class="good">Ik werk graag in teamverband en houd van duidelijke communicatie.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">6.2 · Richtlijnen</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div>Schrijf in de eerste persoon: "ik bouw", "ik heb gemaakt" — niet "Jaouad is een developer die…"</div>
+      <div class="check-item"><div class="check-icon">✓</div>Geen emoji in de interface — hooguit in een beschikbaarheidsbadge of lege state</div>
+      <div class="check-item"><div class="check-icon">✓</div>Korte zinnen — elk stuk tekst dat langer is dan 2 regels mag ingekort worden</div>
+      <div class="check-item"><div class="check-icon">✓</div>Geen CV-jargon: geen "team player", "proactief" of "resultaatgericht"</div>
+      <div class="check-item"><div class="check-icon">✓</div>Technische termen mogen: React, Node.js, REST API, Vite — geen uitleg nodig voor de doelgroep</div>
+      <div class="check-item"><div class="check-icon">✓</div>Foutmeldingen: vriendelijk en oplossingsgericht — "Probeer het opnieuw", niet "Error 500"</div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ── 7. VORMEN & RUIMTE ── -->
+<div class="section" id="vormen">
+  <div class="section-label"><div class="step-num">7</div><div class="section-title">Vormen & Ruimte</div></div>
+  <div class="section-desc">Consistente border-radius, vaste spacing-schaal en toegankelijkheidsregels.</div>
+
+  <div class="sub">
+    <div class="sub-label">7.1 · Border-radius</div>
+    <div class="radius-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:5px"></div><div class="radius-label">5px<br>Tags / badges</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:7px"></div><div class="radius-label">7px<br>Inputs / meldingen</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><div class="radius-label">8px<br>Knoppen</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:10px"></div><div class="radius-label">10px<br>Cards</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><div class="radius-label">12px<br>Grote cards</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:9999px"></div><div class="radius-label">999px<br>Pills / badges</div></div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">7.2 · Spacing schaal</div>
+    <table class="spec-table">
+      <thead><tr><th>Token</th><th>Waarde</th><th>Gebruik</th></tr></thead>
+      <tbody>
+        <tr><td>--space-xs</td><td>4px</td><td>Afstand tussen tag-chips, icoon-tekst</td></tr>
+        <tr><td>--space-sm</td><td>8px</td><td>Binnenste padding van kleine elementen</td></tr>
+        <tr><td>--space-md</td><td>16px</td><td>Standaard gap in grids, padding in cards</td></tr>
+        <tr><td>--space-lg</td><td>32px</td><td>Afstand tussen secties intern</td></tr>
+        <tr><td>--space-xl</td><td>64px</td><td>Padding boven/onder grote secties</td></tr>
+        <tr><td>--space-2xl</td><td>128px</td><td>Afstand tussen paginasecties (Hero → Skills)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">7.3 · Toegankelijkheid</div>
+    <div class="callout"><strong>Minimaal 44 × 44px</strong> voor elk interactief element. Recruiters bekijken portfolio's op telefoon tijdens woon-werkverkeer.</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div>Focus-ring: <code style="font-family:var(--mono);font-size:.76rem;background:rgba(0,229,255,.08);padding:.1rem .4rem;border-radius:4px;color:var(--cyan)">outline: 2px solid var(--cyan); outline-offset: 3px</code></div>
+      <div class="check-item"><div class="check-icon">✓</div>Kleurcontrast minimaal 4.5:1 voor alle tekst — zie knoppencontrast in sectie 4.1</div>
+      <div class="check-item"><div class="check-icon">✓</div>Nooit alleen kleur als enig signaal — altijd ook een icoon of label erbij</div>
+      <div class="check-item"><div class="check-icon">✓</div>line-height voor lopende tekst: 1.7 — comfortabel leesbaar op elk scherm</div>
+      <div class="check-item"><div class="check-icon">✓</div>Alle afbeeldingen (project screenshots) krijgen een beschrijvend alt-attribuut</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:3rem 0 2rem;border-top:1px solid var(--border);margin-top:2rem">
+  <p style="font-family:var(--mono);font-size:.78rem;color:var(--faint)">jm(); &mdash; Style Guide v1.0 &mdash; gegenereerd met Claude</p>
+</div>
+
+</div>
+</body>
+</html>

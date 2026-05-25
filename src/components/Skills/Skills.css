@@ -1,0 +1,92 @@
+.skills {
+  padding: 6rem 2rem;
+}
+
+.skills__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ── GRID ── */
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+/* ── GROUP ── */
+.skills__group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skills__group-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skills__group-label--cyan   { color: var(--cyan); }
+.skills__group-label--purple { color: var(--purple); }
+.skills__group-label--green  { color: var(--green); }
+.skills__group-label--muted  { color: var(--muted); }
+
+/* ── CHIPS ── */
+.skills__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-chip {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid;
+  line-height: 1;
+  transition: transform 0.15s;
+}
+
+.skill-chip:hover {
+  transform: translateY(-2px);
+}
+
+.skill-chip--cyan {
+  background: var(--cyan-dim);
+  border-color: var(--cyan-border);
+  color: var(--cyan);
+}
+
+.skill-chip--purple {
+  background: var(--purple-dim);
+  border-color: rgba(124, 92, 252, 0.25);
+  color: var(--purple);
+}
+
+.skill-chip--green {
+  background: rgba(0, 255, 157, 0.08);
+  border-color: rgba(0, 255, 157, 0.2);
+  color: var(--green);
+}
+
+.skill-chip--muted {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border2);
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skills {
+    padding: 4rem 1.25rem;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command npm -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command npx -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\Jaoua\\\\Documents\\\\GitHub\\\\portfolio-website\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(png|jpg|jpeg|webp|svg|gif\\)' } | Select-Object FullName)"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  overflow: hidden;
+}
+
+.hero__glow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 229, 255, 0.07) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 32px,
+      rgba(255, 255, 255, 0.018) 32px,
+      rgba(255, 255, 255, 0.018) 33px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 32px,
+      rgba(255, 255, 255, 0.018) 32px,
+      rgba(255, 255, 255, 0.018) 33px
+    );
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  max-width: 800px;
+}
+
+/* ── BADGE ── */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(0, 255, 157, 0.08);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.hero__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── NAAM ── */
+.hero__name {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.hero__name span {
+  color: var(--cyan);
+}
+
+/* ── TYPING ── */
+.hero__typing {
+  font-family: var(--mono);
+  font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+  height: 2em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.hero__typing-text {
+  color: var(--cyan);
+}
+
+.hero__cursor {
+  color: var(--cyan);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── TAGLINE ── */
+.hero__tagline {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 540px;
+}
+
+/* ── CTAs ── */
+.hero__ctas {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 5rem 1.5rem 3rem;
+  }
+
+  .hero__content {
+    gap: 1.5rem;
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__ctas .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}

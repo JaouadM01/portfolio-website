@@ -1,0 +1,253 @@
+.experience {
+  padding: 6rem 2rem;
+  background: var(--bg2);
+}
+
+.experience__inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ── LEGENDA ── */
+.experience__legend {
+  display: flex;
+  gap: 1.75rem;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot--stage { background: var(--cyan); }
+.legend-dot--dev   { background: var(--green); }
+.legend-dot--work  { background: var(--faint); }
+
+.legend-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--cyan) 0%,
+    rgba(0, 229, 255, 0.1) 100%
+  );
+}
+
+/* ── ITEM ── */
+.tl-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 1.4rem;
+  padding-bottom: 1.75rem;
+}
+
+.tl-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ── DOT ── */
+.tl-dot-col {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tl-dot-inner {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.tl-dot-inner--stage { background: var(--cyan); }
+.tl-dot-inner--dev   { background: var(--green); }
+.tl-dot-inner--work  { background: var(--faint); }
+
+/* ── CARD ── */
+.tl-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.4rem;
+  transition: border-color 0.15s;
+}
+
+.tl-card:hover {
+  border-color: var(--border2);
+}
+
+/* ── CARD HEAD ── */
+.tl-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tl-head-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.tl-role {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tl-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.tl-badge--stage {
+  background: var(--cyan-dim);
+  border: 0.5px solid var(--cyan-border);
+  color: var(--cyan);
+}
+
+.tl-badge--dev {
+  background: rgba(0, 255, 157, 0.08);
+  border: 0.5px solid rgba(0, 255, 157, 0.2);
+  color: var(--green);
+}
+
+.tl-badge--work {
+  background: var(--purple-dim);
+  border: 0.5px solid rgba(124, 92, 252, 0.25);
+  color: var(--purple);
+}
+
+.tl-period {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+  white-space: nowrap;
+  padding-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+/* ── META ── */
+.tl-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tl-company {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.tl-location {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--faint);
+}
+
+.tl-location::before {
+  content: '/';
+  margin-right: 0.5rem;
+}
+
+/* ── BULLETS ── */
+.tl-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tl-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.tl-bullet::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  .experience {
+    padding: 4rem 1.25rem;
+  }
+
+  .tl-head {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .tl-card {
+    padding: 1rem 1.1rem;
+  }
+
+  .tl-role {
+    font-size: 0.95rem;
+  }
+}

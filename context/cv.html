@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaouad M'chichi — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c10;
+  --bg2:#0d1117;
+  --surface:#141a24;
+  --surface2:#1a2130;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --cyan:#00e5ff;
+  --cyan-dim:rgba(0,229,255,0.10);
+  --cyan-border:rgba(0,229,255,0.22);
+  --purple:#7c5cfc;
+  --purple-dim:rgba(124,92,252,0.1);
+  --green:#00ff9d;
+  --text:#e8eaf0;
+  --muted:#8b92a5;
+  --faint:#3a4255;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Syne',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--display);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* ── LAYOUT ── */
+.cv-wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem 5rem;display:grid;grid-template-columns:260px 1fr;gap:2rem}
+
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:1.5rem}
+
+.avatar-block{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center}
+.avatar{width:90px;height:90px;border-radius:50%;background:var(--cyan-dim);border:2px solid var(--cyan-border);margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--cyan);overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.sidebar-name{font-family:var(--display);font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:.2rem}
+.sidebar-role{font-family:var(--mono);font-size:.68rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase}
+.avail-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--green);background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:.2rem .65rem;border-radius:999px;margin-top:.7rem}
+.avail-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.side-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem}
+.side-label{font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:.85rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+
+/* contact */
+.contact-list{display:flex;flex-direction:column;gap:.55rem}
+.contact-item{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted)}
+.contact-icon{width:26px;height:26px;border-radius:6px;background:var(--cyan-dim);border:1px solid var(--cyan-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem}
+.contact-item a{color:var(--cyan);text-decoration:none}
+.contact-item a:hover{text-decoration:underline}
+
+/* skill tags */
+.skill-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.stag{font-family:var(--mono);font-size:.62rem;font-weight:700;padding:.2rem .55rem;border-radius:5px;border:.5px solid}
+.stag-cyan{background:var(--cyan-dim);border-color:var(--cyan-border);color:var(--cyan)}
+.stag-purple{background:var(--purple-dim);border-color:rgba(124,92,252,.25);color:var(--purple)}
+.stag-green{background:rgba(0,255,157,.08);border-color:rgba(0,255,157,.2);color:var(--green)}
+.stag-muted{background:rgba(255,255,255,.04);border-color:var(--border2);color:var(--muted)}
+
+/* soft skills */
+.soft-list{display:flex;flex-direction:column;gap:.35rem}
+.soft-item{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted)}
+.soft-dot{width:4px;height:4px;border-radius:50%;background:var(--cyan);flex-shrink:0}
+
+/* cert */
+.cert-list{display:flex;flex-direction:column;gap:.55rem}
+.cert-item{font-size:.78rem;color:var(--muted);padding:.45rem .6rem;background:var(--bg2);border:1px solid var(--border);border-radius:7px;line-height:1.45}
+.cert-item strong{color:var(--text);display:block;font-size:.8rem;margin-bottom:.1rem}
+
+/* ── MAIN ── */
+.main{display:flex;flex-direction:column;gap:2rem}
+
+/* header strip */
+.main-header{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.75rem;position:relative;overflow:hidden}
+.main-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.012) 28px,rgba(255,255,255,.012) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(255,255,255,.012) 28px,rgba(255,255,255,.012) 29px);pointer-events:none}
+.main-title{font-family:var(--display);font-size:2rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;position:relative;z-index:1}
+.main-title span{color:var(--cyan)}
+.main-sub{font-family:var(--mono);font-size:.72rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.65rem;position:relative;z-index:1}
+.main-summary{font-size:.85rem;color:var(--muted);line-height:1.75;max-width:580px;position:relative;z-index:1}
+
+/* section */
+.cv-section{}
+.cv-section-title{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+.cv-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--cyan-border),transparent)}
+
+/* timeline */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--cyan),rgba(0,229,255,.1));opacity:.35}
+
+.tl-item{display:grid;grid-template-columns:20px 1fr;gap:1.1rem;padding-bottom:1.5rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{width:20px;height:20px;border-radius:50%;background:var(--bg);border:1.5px solid var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;margin-top:.18rem}
+.tl-dot-inner{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+
+.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem;transition:border-color .15s}
+.tl-card:hover{border-color:var(--border2)}
+.tl-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.15rem;flex-wrap:wrap}
+.tl-title{font-size:.9rem;font-weight:700;color:#fff}
+.tl-date{font-family:var(--mono);font-size:.65rem;color:var(--faint);white-space:nowrap;margin-top:.15rem}
+.tl-org{font-family:var(--mono);font-size:.68rem;color:var(--cyan);margin-bottom:.55rem}
+.tl-badge{font-family:var(--mono);font-size:.58rem;font-weight:700;padding:.13rem .45rem;border-radius:4px}
+.badge-stage{background:rgba(0,229,255,.1);border:.5px solid rgba(0,229,255,.25);color:var(--cyan)}
+.badge-work{background:rgba(124,92,252,.1);border:.5px solid rgba(124,92,252,.25);color:var(--purple)}
+.badge-dev{background:rgba(0,255,157,.1);border:.5px solid rgba(0,255,157,.25);color:var(--green)}
+
+.tl-bullets{display:flex;flex-direction:column;gap:.3rem;padding-left:.05rem}
+.tl-bullet{display:flex;align-items:flex-start;gap:.55rem;font-size:.8rem;color:var(--muted);line-height:1.55}
+.tl-bullet::before{content:'▸';color:var(--cyan);font-size:.65rem;margin-top:.2rem;flex-shrink:0}
+
+/* education grid */
+.edu-grid{display:flex;flex-direction:column;gap:.65rem}
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.edu-left{}
+.edu-degree{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:.1rem}
+.edu-school{font-family:var(--mono);font-size:.68rem;color:var(--cyan)}
+.edu-date{font-family:var(--mono);font-size:.65rem;color:var(--faint);white-space:nowrap;margin-top:.15rem}
+
+/* minors */
+.minor-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.minor-tag{font-family:var(--mono);font-size:.62rem;padding:.18rem .55rem;border-radius:5px;background:var(--purple-dim);border:.5px solid rgba(124,92,252,.25);color:var(--purple)}
+
+/* print */
+@media print{
+  body{background:#fff;color:#000}
+  .cv-wrap{grid-template-columns:220px 1fr}
+  .sidebar,.main-header,.tl-card,.edu-card,.side-block,.avatar-block{background:#fff;border-color:#ddd}
+  .main-title,.tl-title,.edu-degree,.sidebar-name{color:#000}
+  .main-summary,.tl-bullet,.contact-item,.soft-item,.cert-item{color:#444}
+  .cv-section-title,.tl-org,.edu-school,.contact-icon,.stag-cyan,.stag-purple,.avail-badge{color:#1a6b5a}
+  .timeline::before,.main-header::before{display:none}
+  @page{margin:1.5cm}
+}
+
+@media(max-width:720px){
+  .cv-wrap{grid-template-columns:1fr;padding:1.25rem 1rem 4rem}
+  .main-title{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cv-wrap">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div class="avatar-block">
+      <div class="avatar">JM</div>
+      <div class="sidebar-name">Jaouad M'chichi</div>
+      <div class="sidebar-role">Software Developer</div>
+      <div class="avail-badge">Beschikbaar voor stage</div>
+    </div>
+
+    <div class="side-block">
+      <div class="side-label">Contact</div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <span>0645 946 969</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <a href="mailto:jaouadmchichi@hotmail.com">jaouadmchichi@hotmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <div class="side-label">Technische skills</div>
+      <div class="skill-tags">
+        <span class="stag stag-cyan">C# / .NET</span>
+        <span class="stag stag-cyan">Java</span>
+        <span class="stag stag-cyan">JavaScript</span>
+        <span class="stag stag-cyan">Python</span>
+        <span class="stag stag-cyan">React</span>
+        <span class="stag stag-cyan">React Native</span>
+        <span class="stag stag-cyan">Angular JS</span>
+        <span class="stag stag-cyan">HTML / CSS</span>
+        <span class="stag stag-cyan">SQLite</span>
+        <span class="stag stag-purple">Axon Server</span>
+        <span class="stag stag-purple">Claude Skills</span>
+        <span class="stag stag-purple">REST API's</span>
+        <span class="stag stag-purple">XUnit</span>
+        <span class="stag stag-purple">UML</span>
+        <span class="stag stag-green">PDF Conversion</span>
+        <span class="stag stag-green">Screen Readers</span>
+        <span class="stag stag-green">WCAG</span>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <div class="side-label">Persoonlijke vaardigheden</div>
+      <div class="soft-list">
+        <div class="soft-item"><div class="soft-dot"></div>Stressbestendig</div>
+        <div class="soft-item"><div class="soft-dot"></div>Gedisciplineerd</div>
+        <div class="soft-item"><div class="soft-dot"></div>Probleemoplossend</div>
+        <div class="soft-item"><div class="soft-dot"></div>Sociaal intelligent</div>
+        <div class="soft-item"><div class="soft-dot"></div>Flexibel</div>
+        <div class="soft-item"><div class="soft-dot"></div>Sterk verantwoordelijkheidsgevoel</div>
+        <div class="soft-item"><div class="soft-dot"></div>Empathisch</div>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <div class="side-label">Certificaten & Minors</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <strong>Digitale Toegankelijkheid</strong>
+          Stichting Accessibility · 2023
+        </div>
+      </div>
+      <div class="minor-row">
+        <span class="minor-tag">Blockchain, AI &amp; Quantum</span>
+        <span class="minor-tag">FinTech Investing &amp; Trading</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- header -->
+    <div class="main-header">
+      <div class="main-sub">Curriculum Vitae · 2026</div>
+      <div class="main-title">Jaouad <span>M'chichi</span></div>
+      <p class="main-summary" style="margin-top:.75rem">
+        Een student met grote ambities in de ICT-sector. Ik heb een onverzadigbare kennisdorst en geef niet op in stressvolle situaties. Momenteel op zoek naar een eindstage die voldoende uitdaging en groeimogelijkheden biedt — en mogelijk een toekomstige positie na het afronden van mijn studie.
+      </p>
+    </div>
+
+    <!-- ervaring -->
+    <div class="cv-section">
+      <div class="cv-section-title">Ervaring</div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Stagiair Software Development &nbsp;<span class="tl-badge badge-stage">Stage</span></span>
+              <span class="tl-date">08/2025 – 02/2026</span>
+            </div>
+            <div class="tl-org">Vitec Figlo · Capelle aan den IJssel</div>
+            <div class="tl-bullets">
+              <div class="tl-bullet">Veilige REST API's die correct omgaan met gevoelige financiële data, met nette foutmeldingen en duidelijke debug-info.</div>
+              <div class="tl-bullet">Low-code frontends die voldoen aan WCAG — volledig responsief en met directe feedback bij foutieve invoer.</div>
+              <div class="tl-bullet">Uitgebreide XUnit-tests om bij elke uitbreiding te bewaken dat de basis blijft werken.</div>
+              <div class="tl-bullet">Heldere UML-modellen om vooraf functies en prioriteiten te bepalen — bouwen doelgericht en efficiënt.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Full Stack Developer &nbsp;<span class="tl-badge badge-dev">Developer</span></span>
+              <span class="tl-date">06/2024 – 01/2025</span>
+            </div>
+            <div class="tl-org">Cheadle Ware</div>
+            <div class="tl-bullets">
+              <div class="tl-bullet">Dashboards ontworpen en gebouwd die werkprocessen van medewerkers stroomlijnden — 30% toename in operationele efficiëntie.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Sales Employee &nbsp;<span class="tl-badge badge-work">Werkervaring</span></span>
+              <span class="tl-date">08/2021 – 03/2023</span>
+            </div>
+            <div class="tl-org">Het Virtorium</div>
+            <div class="tl-bullets">
+              <div class="tl-bullet">Energieke presentaties gegeven aan grote groepen met zelfvertrouwen en aandacht.</div>
+              <div class="tl-bullet">Sterke klantrelaties opgebouwd en onderhouden om herhaalde aankopen en mond-tot-mondreclame te stimuleren.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Diverse werkzaamheden &nbsp;<span class="tl-badge badge-work">Werkervaring</span></span>
+              <span class="tl-date">2018 – 2021</span>
+            </div>
+            <div class="tl-org">Het Virtorium · verkoper, kassa, restaurant</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- opleiding -->
+    <div class="cv-section">
+      <div class="cv-section-title">Opleiding</div>
+      <div class="edu-grid">
+
+        <div class="edu-card">
+          <div class="edu-left">
+            <div class="edu-degree">Hbo ICT: Software Development</div>
+            <div class="edu-school">Haagse Hogeschool · Den Haag</div>
+          </div>
+          <div class="edu-date">2022 – Heden</div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-left">
+            <div class="edu-degree">Havo: Economie &amp; Maatschappijleer</div>
+            <div class="edu-school">MboRijnland · Leiden</div>
+          </div>
+          <div class="edu-date">2022</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- wat ik meeneem -->
+    <div class="cv-section">
+      <div class="cv-section-title">Wat ik meeneem</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem">
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">Talen & Frameworks</div>
+          <div class="skill-tags">
+            <span class="stag stag-cyan">.NET / C#</span>
+            <span class="stag stag-cyan">Java</span>
+            <span class="stag stag-cyan">JavaScript</span>
+            <span class="stag stag-cyan">Python</span>
+            <span class="stag stag-cyan">React</span>
+            <span class="stag stag-cyan">React Native</span>
+            <span class="stag stag-cyan">Angular JS</span>
+          </div>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:var(--mono);font-size:.62rem;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">DevOps & Cloud</div>
+          <div class="skill-tags">
+            <span class="stag stag-purple">GitLab CI/CD</span>
+            <span class="stag stag-purple">Docker</span>
+            <span class="stag stag-purple">Axon Server</span>
+            <span class="stag stag-purple">Event-driven architectuur</span>
+            <span class="stag stag-purple">Cloud-infrastructuur</span>
+          </div>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:var(--mono);font-size:.62rem;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">AI & Integraties</div>
+          <div class="skill-tags">
+            <span class="stag stag-green">Claude Skills</span>
+            <span class="stag stag-green">AI-integraties</span>
+            <span class="stag stag-green">Chatbots</span>
+          </div>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem">Design & Toegankelijkheid</div>
+          <div class="skill-tags">
+            <span class="stag stag-muted">UI/UX design</span>
+            <span class="stag stag-muted">WCAG</span>
+            <span class="stag stag-muted">Responsief design</span>
+            <span class="stag stag-muted">Van ontwerp tot publicatie</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

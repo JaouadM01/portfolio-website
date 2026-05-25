@@ -1,0 +1,119 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080c10;
+  --bg2: #0d1117;
+  --bg3: #111620;
+  --surface: #141a24;
+  --surface2: #1a2130;
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.13);
+  --cyan: #00e5ff;
+  --cyan-dim: rgba(0, 229, 255, 0.12);
+  --cyan-border: rgba(0, 229, 255, 0.25);
+  --purple: #7c5cfc;
+  --purple-dim: rgba(124, 92, 252, 0.1);
+  --green: #00ff9d;
+  --text: #e8eaf0;
+  --muted: #8b92a5;
+  --faint: #3a4255;
+  --danger: #ff4d4d;
+  --warning: #ffb830;
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Syne', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--display);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  min-width: 20px;
+}
+
+/* ── KNOPPEN ── */
+.btn {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.75rem 1.6rem;
+  border-radius: 8px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1.5px solid transparent;
+  line-height: 1;
+  transition: all 0.15s;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--cyan);
+  color: #080c10;
+  border-color: var(--cyan);
+}
+
+.btn--primary:hover {
+  background: #00ccff;
+  border-color: #00ccff;
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.btn--secondary:hover {
+  background: var(--cyan-dim);
+}
+
+/* ── FOCUS ── */
+*:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}

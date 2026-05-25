@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Design Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1117;
+    --bg3: #111620;
+    --surface: #161c28;
+    --surface2: #1e2736;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #00e5ff;
+    --accent2: #7c5cfc;
+    --accent3: #00ff9d;
+    --text: #e8eaf0;
+    --text2: #8b92a5;
+    --text3: #4a5168;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--display);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ---- LAYOUT ---- */
+  .doc-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  /* ---- HEADER ---- */
+  .doc-header {
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .doc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .doc-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .doc-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .doc-title span {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .doc-subtitle {
+    color: var(--text2);
+    font-size: 15px;
+    font-weight: 400;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .dot-green { background: var(--accent3); }
+  .dot-blue  { background: var(--accent); }
+  .dot-purple{ background: var(--accent2); }
+
+  /* ---- SECTIONS ---- */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    min-width: 28px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text2);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ---- STACK CARD ---- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  .stack-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .stack-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+
+  .stack-card .sc-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .stack-card .sc-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stack-card .sc-note {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .tag-accent { color: var(--accent); }
+  .tag-purple { color: var(--accent2); }
+  .tag-green  { color: var(--accent3); }
+
+  /* ---- PAGE STRUCTURE DIAGRAM ---- */
+  .page-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .page-flow::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent) 0%, var(--accent2) 50%, var(--border) 100%);
+    opacity: 0.3;
+  }
+
+  .flow-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .flow-item:last-child { border-bottom: none; }
+
+  .flow-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    padding-top: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-content {}
+
+  .flow-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .flow-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 400;
+  }
+
+  .badge-new { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+  .badge-key { background: rgba(124,92,252,0.1); color: var(--accent2); border: 1px solid rgba(124,92,252,0.2); }
+  .badge-dual { background: rgba(0,255,157,0.1); color: var(--accent3); border: 1px solid rgba(0,255,157,0.2); }
+
+  .flow-desc {
+    color: var(--text2);
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .flow-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .detail-chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text2);
+  }
+
+  /* ---- DESIGN TOKENS ---- */
+  .design-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .design-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .design-card h4 {
+    font-size: 11px;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 14px;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .swatch-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .swatch-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .font-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .font-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .font-name {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    min-width: 80px;
+  }
+
+  .font-preview-display {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .font-preview-body {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text2);
+  }
+
+  .font-preview-mono {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* ---- AUDIENCE TABLE ---- */
+  .audience-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .audience-table th {
+    background: var(--surface);
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .audience-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .audience-table tr:last-child td { border-bottom: none; }
+
+  .audience-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .hl-cyan   { color: var(--accent); }
+  .hl-purple { color: var(--accent2); }
+  .hl-green  { color: var(--accent3); }
+
+  /* ---- COMPONENTS BLOCK ---- */
+  .component-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .comp-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .comp-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    min-width: 180px;
+  }
+
+  .comp-desc {
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  /* ---- NEXT STEPS ---- */
+  .steps-list {
+    counter-reset: steps;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step-item {
+    counter-increment: steps;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-counter {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    background: rgba(124,92,252,0.1);
+    border: 1px solid rgba(124,92,252,0.2);
+    border-radius: 6px;
+    min-width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-counter::before { content: counter(steps, decimal-leading-zero); }
+
+  .step-body h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .step-body p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* ---- FOOTER ---- */
+  .doc-footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .doc-footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .version-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text3);
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  /* inline code */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(0,229,255,0.07);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="doc-wrapper">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="doc-label">Design Document v1.0</div>
+    <h1 class="doc-title">Software Developer<br><span>Portfolio Website</span></h1>
+    <p class="doc-subtitle">
+      Een single-page React portfolio gericht op het aantrekken van stage-aanvragen én freelance opdrachten — donker, tech-achtig, en professioneel.
+    </p>
+    <div class="meta-row">
+      <div class="meta-pill"><span class="dot dot-green"></span> Doel: Stage + Freelance</div>
+      <div class="meta-pill"><span class="dot dot-blue"></span> Framework: React + Vite</div>
+      <div class="meta-pill"><span class="dot dot-purple"></span> Styling: CSS</div>
+      <div class="meta-pill"><span class="dot dot-green"></span> Hosting: Vercel</div>
+    </div>
+  </header>
+
+  <!-- 1. TECH STACK -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Tech Stack</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="sc-label">Framework</div>
+        <div class="sc-value tag-accent">React</div>
+        <div class="sc-note">+ Vite als build tool</div>
+      </div>
+      <div class="stack-card">
+        <div class="sc-label">Styling</div>
+        <div class="sc-value tag-purple">CSS</div>
+        <div class="sc-note">Per-component, geen lekkage</div>
+      </div>
+      <div class="stack-card">
+        <div class="sc-label">Animaties</div>
+        <div class="sc-value tag-green">Framer Motion</div>
+        <div class="sc-note">Scroll-triggered reveals</div>
+      </div>
+      <div class="stack-card">
+        <div class="sc-label">Contact Form</div>
+        <div class="sc-value tag-accent">EmailJS</div>
+        <div class="sc-note">Geen backend nodig</div>
+      </div>
+      <div class="stack-card">
+        <div class="sc-label">Hosting</div>
+        <div class="sc-value tag-purple">Vercel</div>
+        <div class="sc-note">Gratis, CI/CD via GitHub</div>
+      </div>
+      <div class="stack-card">
+        <div class="sc-label">Icons</div>
+        <div class="sc-value tag-green">React Icons</div>
+        <div class="sc-note">of Lucide React</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PAGINA STRUCTUUR -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Pagina Structuur (Single Page)</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="page-flow">
+
+      <div class="flow-item">
+        <div class="flow-num">01</div>
+        <div class="flow-content">
+          <div class="flow-title">
+            Hero / Introductie
+            <span class="flow-badge badge-key">Eerste indruk</span>
+          </div>
+          <div class="flow-desc">
+            De eerste sectie die een bezoeker ziet. Naam, rol, en een korte tagline die beide doelgroepen aanspreekt. Twee CTA-knoppen en een subtiel typing-animatie effect.
+          </div>
+          <div class="flow-details">
+            <span class="detail-chip">Naam + titel</span>
+            <span class="detail-chip">Tagline: stage + freelance</span>
+            <span class="detail-chip">CTA: "Bekijk projecten"</span>
+            <span class="detail-chip">CTA: "Neem contact op"</span>
+            <span class="detail-chip">Beschikbaarheidsbadge</span>
+            <span class="detail-chip">Typing-animatie</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">02</div>
+        <div class="flow-content">
+          <div class="flow-title">
+            Skills / Technieken
+            <span class="flow-badge badge-new">Compact</span>
+          </div>
+          <div class="flow-desc">
+            Snelle visuele scan voor bezoekers. Icoontjes en namen van technologieën die je beheerst. Compact gehouden — niet te veel ruimte innemen.
+          </div>
+          <div class="flow-details">
+            <span class="detail-chip">React / TypeScript</span>
+            <span class="detail-chip">Node.js</span>
+            <span class="detail-chip">SQL / databases</span>
+            <span class="detail-chip">Git / GitHub</span>
+            <span class="detail-chip">CSS Custom Properties</span>
+            <span class="detail-chip">+ meer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">03</div>
+        <div class="flow-content">
+          <div class="flow-title">
+            Ervaring
+            <span class="flow-badge badge-key">Vertrouwen opbouwen</span>
+          </div>
+          <div class="flow-desc">
+            Tijdlijn van stages, schoolopdrachten en eventuele freelance klussen. Elke entry heeft een label zodat bezoekers meteen weten wat relevant is. Referentie-quotes van begeleiders of docenten.
+          </div>
+          <div class="flow-details">
+            <span class="detail-chip">Timeline formaat</span>
+            <span class="detail-chip">Labels: Stage / Project / Freelance</span>
+            <span class="detail-chip">Periode + bedrijf</span>
+            <span class="detail-chip">Korte beschrijving</span>
+            <span class="detail-chip">Referentie-quotes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">04</div>
+        <div class="flow-content">
+          <div class="flow-title">
+            Projecten
+            <span class="flow-badge badge-key">Bewijs van werk</span>
+          </div>
+          <div class="flow-desc">
+            Card-grid met screenshots, beschrijvingen en technologie-tags. Elk project heeft een badge die aangeeft of het een schoolproject, freelance of persoonlijk project is. Klikbaar voor meer details in een modal of uitklapveld.
+          </div>
+          <div class="flow-details">
+            <span class="detail-chip">Card-grid layout</span>
+            <span class="detail-chip">Screenshot per project</span>
+            <span class="detail-chip">Tech-tags (React, Firebase…)</span>
+            <span class="detail-chip">Badge: Schoolproject / Freelance / Persoonlijk</span>
+            <span class="detail-chip">Modal met meer info</span>
+            <span class="detail-chip">GitHub-link per project</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">05</div>
+        <div class="flow-content">
+          <div class="flow-title">
+            Contact
+            <span class="flow-badge badge-dual">Twee doelgroepen</span>
+          </div>
+          <div class="flow-desc">
+            Eén contactformulier dat beide doelgroepen aanspreekt. Intro-tekst: <em>"Stage-aanvraag of freelance project? Stuur me een bericht."</em> Aangevuld met directe links naar LinkedIn en GitHub.
+          </div>
+          <div class="flow-details">
+            <span class="detail-chip">Naam + email + bericht</span>
+            <span class="detail-chip">EmailJS (geen backend)</span>
+            <span class="detail-chip">LinkedIn-knop</span>
+            <span class="detail-chip">GitHub-knop</span>
+            <span class="detail-chip">Dual-purpose tekst</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. DESIGN TOKENS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Design Tokens & Stijl</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="design-grid">
+
+      <div class="design-card">
+        <h4>Kleurenpalet</h4>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="font-size:11px; color:var(--text3); margin-bottom:8px; font-family:var(--mono);">Backgrounds</div>
+            <div class="color-swatches">
+              <div class="swatch-wrap"><div class="swatch" style="background:#080c10; border:1px solid rgba(255,255,255,0.1)"></div><div class="swatch-label">#080c10</div></div>
+              <div class="swatch-wrap"><div class="swatch" style="background:#0d1117; border:1px solid rgba(255,255,255,0.1)"></div><div class="swatch-label">#0d1117</div></div>
+              <div class="swatch-wrap"><div class="swatch" style="background:#161c28; border:1px solid rgba(255,255,255,0.1)"></div><div class="swatch-label">#161c28</div></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; color:var(--text3); margin-bottom:8px; font-family:var(--mono);">Accenten</div>
+            <div class="color-swatches">
+              <div class="swatch-wrap"><div class="swatch" style="background:#00e5ff;"></div><div class="swatch-label">Cyaan</div></div>
+              <div class="swatch-wrap"><div class="swatch" style="background:#7c5cfc;"></div><div class="swatch-label">Paars</div></div>
+              <div class="swatch-wrap"><div class="swatch" style="background:#00ff9d;"></div><div class="swatch-label">Groen</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-card">
+        <h4>Typografie</h4>
+        <div class="font-demo">
+          <div class="font-row">
+            <span class="font-name">Display</span>
+            <span class="font-preview-display">Syne 700</span>
+          </div>
+          <div class="font-row">
+            <span class="font-name">Body</span>
+            <span class="font-preview-body">Syne 400 — lopende tekst, beschrijvingen</span>
+          </div>
+          <div class="font-row">
+            <span class="font-name">Code / Labels</span>
+            <span class="font-preview-mono">JetBrains Mono</span>
+          </div>
+          <div style="margin-top:8px; padding-top:12px; border-top:1px solid var(--border);">
+            <div style="font-size:11px; color:var(--text3); font-family:var(--mono);">Importeren via Google Fonts CDN</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-card">
+        <h4>CSS Variabelen (:root)</h4>
+        <div style="font-family:var(--mono); font-size:12px; line-height:2; color:var(--text2);">
+          <div><span style="color:var(--accent2);">--bg-primary</span><span style="color:var(--text3);">:</span> <span style="color:var(--accent3);">#080c10</span><span style="color:var(--text3);">;</span></div>
+          <div><span style="color:var(--accent2);">--accent-cyan</span><span style="color:var(--text3);">:</span> <span style="color:var(--accent3);">#00e5ff</span><span style="color:var(--text3);">;</span></div>
+          <div><span style="color:var(--accent2);">--accent-purple</span><span style="color:var(--text3);">:</span> <span style="color:var(--accent3);">#7c5cfc</span><span style="color:var(--text3);">;</span></div>
+          <div><span style="color:var(--accent2);">--font-display</span><span style="color:var(--text3);">:</span> <span style="color:var(--text);">'Syne'</span><span style="color:var(--text3);">;</span></div>
+          <div><span style="color:var(--accent2);">--font-mono</span><span style="color:var(--text3);">:</span> <span style="color:var(--text);">'JetBrains Mono'</span><span style="color:var(--text3);">;</span></div>
+          <div><span style="color:var(--accent2);">--border-radius</span><span style="color:var(--text3);">:</span> <span style="color:var(--accent3);">10px</span><span style="color:var(--text3);">;</span></div>
+        </div>
+      </div>
+
+      <div class="design-card">
+        <h4>Visuele stijl</h4>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent); flex-shrink:0;"></div>
+            <span style="font-size:13px; color:var(--text2);">Glassmorphism cards op dark bg</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent2); flex-shrink:0;"></div>
+            <span style="font-size:13px; color:var(--text2);">Gradient borders op hover</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent3); flex-shrink:0;"></div>
+            <span style="font-size:13px; color:var(--text2);">Subtle grid-patroon in hero</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent); flex-shrink:0;"></div>
+            <span style="font-size:13px; color:var(--text2);">Framer Motion scroll-reveals</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent2); flex-shrink:0;"></div>
+            <span style="font-size:13px; color:var(--text2);">Sticky navbar met blur-effect</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. DOELGROEPEN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Doelgroepen Strategie</span>
+      <div class="section-line"></div>
+    </div>
+    <table class="audience-table">
+      <thead>
+        <tr>
+          <th>Doelgroep</th>
+          <th>Wat ze willen zien</th>
+          <th>Waar op de site</th>
+          <th>Aanpak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hl-cyan">Stagebedrijf</td>
+          <td>Leergierigheid, technische basis, beschikbaarheid, studierichting</td>
+          <td>Hero badge, Ervaring sectie, Skills</td>
+          <td>Label <code>Stage</code> bij ervaringen; beschikbaarheidsbadge in hero</td>
+        </tr>
+        <tr>
+          <td class="hl-green">Freelance klant</td>
+          <td>Afgewerkte projecten, zelfstandigheid, technische stack, betrouwbaarheid</td>
+          <td>Projecten sectie, Contact</td>
+          <td>Badge <code>Freelance</code> bij projecten; GitHub-links; duidelijke CTA</td>
+        </tr>
+        <tr>
+          <td class="hl-purple">Beide</td>
+          <td>Persoonlijkheid, communicatie, verzorgde presentatie</td>
+          <td>Hele site</td>
+          <td>Donker & tech stijl straalt competentie uit; contactformulier open voor alles</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. COMPONENTEN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">React Componenten Overzicht</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="component-list">
+      <div class="comp-row">
+        <span class="comp-name">&lt;Navbar /&gt;</span>
+        <span class="comp-desc">Sticky navigatie, smooth scroll naar secties, blur-achtergrond bij scrollen</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Hero /&gt;</span>
+        <span class="comp-desc">Naam, tagline, typing-effect, twee CTA-knoppen, beschikbaarheidsbadge</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Skills /&gt;</span>
+        <span class="comp-desc">Grid van technologie-icoontjes met naam, compact en visueel</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Experience /&gt;</span>
+        <span class="comp-desc">Verticale tijdlijn met items — elke entry heeft label, periode, rol, beschrijving</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;ExperienceItem /&gt;</span>
+        <span class="comp-desc">Enkelvoudig ervaringsitem; herbruikbaar met props voor type, datum, beschrijving</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Projects /&gt;</span>
+        <span class="comp-desc">Responsieve card-grid met filteropties per type (alle / school / freelance)</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;ProjectCard /&gt;</span>
+        <span class="comp-desc">Screenshot, naam, beschrijving, tech-tags, badge, GitHub-link, modal trigger</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;ProjectModal /&gt;</span>
+        <span class="comp-desc">Uitgebreide projectdetails: meerdere screenshots, volledige beschrijving</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;References /&gt;</span>
+        <span class="comp-desc">Quote-blokjes met naam, functie en bedrijf van referentiepersoon</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Contact /&gt;</span>
+        <span class="comp-desc">Formulier (naam, email, bericht) via EmailJS + LinkedIn/GitHub knoppen</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">&lt;Footer /&gt;</span>
+        <span class="comp-desc">Minimaal: naam, social links, copyright</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. BESTANDSSTRUCTUUR -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Bestandsstructuur</span>
+      <div class="section-line"></div>
+    </div>
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px;">
+      <pre style="font-family:var(--mono); font-size:12px; line-height:1.9; color:var(--text2); white-space:pre-wrap;"><span style="color:var(--accent);">src/</span>
+├── <span style="color:var(--accent);">components/</span>
+│   ├── Navbar/
+│   │   ├── Navbar.jsx
+│   │   └── <span style="color:var(--accent2);">Navbar.css</span>
+│   ├── Hero/
+│   │   ├── Hero.jsx
+│   │   └── <span style="color:var(--accent2);">Hero.css</span>
+│   ├── Skills/
+│   ├── Experience/
+│   ├── Projects/
+│   ├── Contact/
+│   └── Footer/
+├── <span style="color:var(--accent);">styles/</span>
+│   └── <span style="color:var(--accent2);">global.css</span>       <span style="color:var(--text3);">← :root variabelen, reset, base styles</span>
+├── <span style="color:var(--accent);">data/</span>
+│   ├── projects.js       <span style="color:var(--text3);">← projecten als data array</span>
+│   └── experience.js     <span style="color:var(--text3);">← ervaringen als data array</span>
+├── App.jsx
+└── main.jsx</pre>
+    </div>
+  </section>
+
+  <!-- 7. VOLGENDE STAPPEN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Volgende Stappen</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>Project opzetten</h4>
+          <p>Vite + React installeren, CSS instellen, mappenstructuur aanmaken, Google Fonts importeren.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>Global styles & variabelen</h4>
+          <p>CSS variabelen voor kleuren, typografie en spacing definiëren in <code>global.css :root {}</code>. Reset en base styles instellen.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>Hero sectie bouwen</h4>
+          <p>Eerste component: Navbar + Hero. Typing-animatie toevoegen, CTA-knoppen en beschikbaarheidsbadge.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>Data structureren</h4>
+          <p>Projecten en ervaringen als JavaScript-objecten in <code>data/</code> mappen plaatsen zodat de componenten dynamisch renderen.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>Overige secties + animaties</h4>
+          <p>Skills, Experience, Projects en Contact bouwen. Framer Motion scroll-reveals toevoegen voor een gepolijste feel.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-counter"></div>
+        <div class="step-body">
+          <h4>EmailJS koppelen & deployen</h4>
+          <p>Contactformulier verbinden met EmailJS. GitHub repo aanmaken en verbinden met Vercel voor automatische deploys.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <p>Portfolio Design Document — gegenereerd met Claude</p>
+    <span class="version-badge">v1.0 — mei 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

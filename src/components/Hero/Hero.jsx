@@ -58,7 +58,7 @@ export default function Hero() {
 
         <p className="hero__tagline">
           Van .NET en Java tot React en AI-integraties.
-          Ik bouw het hele traject, van ontwerp tot deploy.
+          Ik bouw het hele project, van ontwerp tot deploy.
         </p>
 
         <div className="hero__ctas">

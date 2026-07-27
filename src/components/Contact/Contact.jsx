@@ -1,5 +1,6 @@
 import photo1 from '../../assets/projecten/IMG_7276.jpeg'
 import photo2 from '../../assets/projecten/IMG_7461.jpeg'
+import SectionHeader from '../SectionHeader'
 import './Contact.css'
 
 const socials = [
@@ -25,15 +26,11 @@ export default function Contact() {
     <section className="contact" id="contact">
       <div className="contact__inner">
 
-        <div className="section-header">
-          <span className="section-num">05</span>
-          <h2 className="section-title">Contact</h2>
-          <div className="section-line" />
-        </div>
+        <SectionHeader num="05" title="Contact" />
 
         <div className="contact__layout">
 
-          <div className="contact__content">
+          <div className="contact__content" data-reveal>
             <p className="contact__label">Laten we samenwerken</p>
             <h3 className="contact__heading">
               Stage-aanvraag of freelance project?
@@ -61,7 +58,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="contact__photos">
+          <div className="contact__photos" data-reveal style={{ transitionDelay: '120ms' }}>
             <div className="contact__photo-wrap contact__photo-wrap--top">
               <img src={photo1} alt="Jaouad M'chichi" />
             </div>

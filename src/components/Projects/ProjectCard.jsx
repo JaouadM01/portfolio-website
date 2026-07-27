@@ -6,12 +6,15 @@ const badgeLabels = {
   school: 'Schoolproject',
 }
 
-export default function ProjectCard({ project, onClick }) {
+export default function ProjectCard({ project, onClick, featured = false, index = 0 }) {
   const { name, tagline, tech, badge, images, period } = project
 
   return (
-    <article className="project-card" onClick={onClick} role="button" tabIndex={0}
+    <article
+      className={`project-card${featured ? ' project-card--featured' : ''}`}
+      onClick={onClick} role="button" tabIndex={0}
       onKeyDown={e => e.key === 'Enter' && onClick()}
+      style={{ animationDelay: `${Math.min(index, 5) * 60}ms` }}
     >
       <div className="project-card__thumb">
         {images[0]
@@ -24,6 +27,7 @@ export default function ProjectCard({ project, onClick }) {
       </div>
 
       <div className="project-card__body">
+        {featured && <span className="project-card__featured-label">Uitgelicht</span>}
         <h3 className="project-card__name">{name}</h3>
         <p className="project-card__tagline">{tagline}</p>
         <div className="project-card__tags">

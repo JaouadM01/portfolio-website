@@ -1,4 +1,5 @@
 import { skills } from '../../data/skills'
+import SectionHeader from '../SectionHeader'
 import './Skills.css'
 
 export default function Skills() {
@@ -6,18 +7,27 @@ export default function Skills() {
     <section className="skills" id="skills">
       <div className="skills__inner">
 
-        <div className="section-header">
-          <span className="section-num">02</span>
-          <h2 className="section-title">Skills</h2>
-          <div className="section-line" />
-        </div>
+        <SectionHeader
+          num="02"
+          title="Skills"
+          subtitle="Waar ik dagelijks mee bouw — van backend tot AI-integraties."
+        />
 
         <div className="skills__grid">
-          {skills.map(group => (
-            <div className="skills__group" key={group.category}>
-              <span className={`skills__group-label skills__group-label--${group.color}`}>
-                {group.category}
-              </span>
+          {skills.map((group, i) => (
+            <div
+              className="skills__group"
+              key={group.category}
+              data-reveal
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="skills__group-head">
+                <span className="skills__group-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className={`skills__group-label skills__group-label--${group.color}`}>
+                  {group.category}
+                </span>
+                <span className="skills__group-count">{group.items.length} tools</span>
+              </div>
               <div className="skills__chips">
                 {group.items.map(item => (
                   <span className={`skill-chip skill-chip--${group.color}`} key={item}>

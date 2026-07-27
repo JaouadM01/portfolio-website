@@ -65,7 +65,27 @@ export default function Hero() {
           <a href="#projecten" className="btn btn--primary">Bekijk mijn projecten</a>
           <a href="#contact" className="btn btn--secondary">Neem contact op</a>
         </div>
+
+        <div className="hero__stats">
+          <div className="hero__stat">
+            <span className="hero__stat-num">06</span>
+            <span className="hero__stat-label">Projecten</span>
+          </div>
+          <div className="hero__stat">
+            <span className="hero__stat-num">03</span>
+            <span className="hero__stat-label">Bedrijven</span>
+          </div>
+          <div className="hero__stat">
+            <span className="hero__stat-num">2026</span>
+            <span className="hero__stat-label">Stage-kandidaat</span>
+          </div>
+        </div>
       </div>
+
+      <a href="#skills" className="hero__scroll" aria-label="Scroll naar skills">
+        <span className="hero__scroll-line" aria-hidden="true" />
+        scroll
+      </a>
     </section>
   )
 }

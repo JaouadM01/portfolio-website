@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 6rem 2rem 4rem;
+  padding: 6rem 2rem 8.5rem;
   overflow: hidden;
 }
 
@@ -140,9 +140,121 @@
   margin-top: 0.5rem;
 }
 
+/* ── STATS ── */
+.hero__stats {
+  display: flex;
+  gap: 2.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.hero__stat-num {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__stat-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── SCROLL-INDICATOR ── */
+.hero__scroll {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hero__scroll:hover {
+  color: var(--cyan);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(to bottom, transparent, var(--cyan));
+  overflow: hidden;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scroll-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    animation: scroll-slide 2.2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-slide {
+    0% { top: -100%; }
+    60%, 100% { top: 100%; }
+  }
+
+  /* ── LAAD-ANIMATIE ── */
+  .hero__content > * {
+    animation: hero-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  .hero__content > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero__content > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero__content > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero__content > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero__content > *:nth-child(5) { animation-delay: 0.45s; }
+  .hero__content > *:nth-child(6) { animation-delay: 0.55s; }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .hero {
     padding: 5rem 1.5rem 3rem;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  .hero__stats {
+    gap: 1.75rem;
   }
 
   .hero__content {

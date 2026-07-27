@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { projects } from '../../data/projects'
 import ProjectCard from './ProjectCard'
 import ProjectModal from './ProjectModal'
+import SectionHeader from '../SectionHeader'
 import './Projects.css'
 
 const filters = ['Alles', 'Persoonlijk', 'Freelance', 'Schoolproject']
@@ -18,13 +19,13 @@ export default function Projects() {
     <section className="projects" id="projecten">
       <div className="projects__inner">
 
-        <div className="section-header">
-          <span className="section-num">04</span>
-          <h2 className="section-title">Projecten</h2>
-          <div className="section-line" />
-        </div>
+        <SectionHeader
+          num="04"
+          title="Projecten"
+          subtitle="Een selectie van wat ik heb gebouwd — persoonlijk, freelance en op school."
+        />
 
-        <div className="projects__filters">
+        <div className="projects__filters" data-reveal>
           {filters.map(f => (
             <button
               key={f}
@@ -36,11 +37,13 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="projects__grid">
-          {filtered.map(project => (
+        <div className="projects__grid" data-reveal>
+          {filtered.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}
+              featured={active === 'Alles' && i === 0}
+              index={i}
               onClick={() => setSelected(project)}
             />
           ))}

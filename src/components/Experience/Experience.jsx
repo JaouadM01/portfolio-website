@@ -1,4 +1,5 @@
 import { experience } from '../../data/experience'
+import SectionHeader from '../SectionHeader'
 import './Experience.css'
 
 const legend = [
@@ -12,13 +13,13 @@ export default function Experience() {
     <section className="experience" id="ervaring">
       <div className="experience__inner">
 
-        <div className="section-header">
-          <span className="section-num">03</span>
-          <h2 className="section-title">Ervaring</h2>
-          <div className="section-line" />
-        </div>
+        <SectionHeader
+          num="03"
+          title="Ervaring"
+          subtitle="Van stage en development tot werkervaring naast mijn studie."
+        />
 
-        <div className="experience__legend">
+        <div className="experience__legend" data-reveal>
           {legend.map(item => (
             <div className="legend-item" key={item.label}>
               <span className={`legend-dot legend-dot--${item.dot}`} />
@@ -28,8 +29,13 @@ export default function Experience() {
         </div>
 
         <div className="timeline">
-          {experience.map(item => (
-            <div className="tl-item" key={item.id}>
+          {experience.map((item, i) => (
+            <div
+              className="tl-item"
+              key={item.id}
+              data-reveal
+              style={{ transitionDelay: `${Math.min(i, 4) * 70}ms` }}
+            >
               <div className="tl-dot-col">
                 <div className="tl-dot">
                   <div className={`tl-dot-inner tl-dot-inner--${item.badge}`} />

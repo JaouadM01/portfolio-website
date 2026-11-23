@@ -9,7 +9,8 @@
 set -euo pipefail
 
 SITE=/home/ubuntu/portfolio/site
-release=$(date +%Y%m%d-%H%M%S)
+# Nederlandse tijd, net als deploy.ps1, zodat de mapnamen van beide routes in de juiste volgorde staan
+release=$(TZ=Europe/Amsterdam date +%Y%m%d-%H%M%S)
 dir="$SITE/releases/$release"
 
 mkdir -p "$dir"

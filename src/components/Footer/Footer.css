@@ -1,35 +1,117 @@
 .footer {
-  padding: 1.5rem 2.5rem;
   border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  background: var(--bg);
 }
 
-.footer__name {
+.footer__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 2.25rem 2rem;
+  display: grid;
+  grid-template-columns: 1.4fr auto auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__logo {
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--cyan);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.footer__logo span[aria-hidden] {
+  color: var(--muted);
 }
 
 .footer__copy {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--faint);
+  max-width: 420px;
+}
+
+.footer__copy a {
+  color: var(--muted);
+  text-underline-offset: 3px;
+}
+
+.footer__copy a:hover {
+  color: var(--cyan);
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+}
+
+.footer__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer__nav a:hover {
+  color: var(--cyan);
+}
+
+.footer__end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 0.4rem;
+  list-style: none;
 }
 
 .footer__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--muted);
   text-decoration: none;
-  letter-spacing: 0.08em;
-  transition: color 0.15s;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .footer__top:hover {
   color: var(--cyan);
+}
+
+.footer__top svg {
+  width: 15px;
+  height: 15px;
+}
+
+@media (max-width: 900px) {
+  .footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .footer__end {
+    justify-content: space-between;
+  }
 }

@@ -2,16 +2,76 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio van Jaouad M'chichi — Software Developer beschikbaar voor stage en freelance." />
-    <title>Jaouad M'chichi — Software Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Jaouad M'chichi · Full-stack Software Developer</title>
+    <meta
+      name="description"
+      content="Portfolio van Jaouad M'chichi: full-stack software developer (.NET, Java, React, TypeScript). Afstuderend HBO-ICT in januari 2027, open voor een junior-functie en freelance opdrachten."
+    />
+    <meta name="author" content="Jaouad M'chichi" />
+    <meta name="theme-color" content="#080c10" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="__SITE_URL__/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Jaouad M'chichi" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:title" content="Jaouad M'chichi · Full-stack Software Developer" />
+    <meta
+      property="og:description"
+      content="Van .NET en Java tot React en AI-integraties. Afstuderend in januari 2027, open voor een junior-functie en freelance."
+    />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Jaouad M'chichi, full-stack software developer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jaouad M'chichi · Full-stack Software Developer" />
+    <meta
+      name="twitter:description"
+      content="Van .NET en Java tot React en AI-integraties. Afstuderend in januari 2027."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
+
+    <!-- Thema vóór de eerste paint (los bestand i.v.m. de Content-Security-Policy) -->
+    <script src="/theme-init.js"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jaouad M'chichi",
+        "url": "__SITE_URL__/",
+        "image": "__SITE_URL__/og-image.png",
+        "jobTitle": "Full-stack Software Developer",
+        "email": "mailto:jaouadmchichi@hotmail.com",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "De Haagse Hogeschool" },
+        "knowsAbout": ["C#", ".NET", "Java", "Spring Boot", "TypeScript", "React", "Next.js", "PostgreSQL", "Docker", "WCAG"],
+        "sameAs": [
+          "https://www.linkedin.com/in/jaouad-m-chichi-267a02273/",
+          "https://github.com/JaouadM01",
+          "https://gitlab.com/Jaouad_M01"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root">
+      <!-- Statische fallback voor crawlers en bezoekers zonder JavaScript; React vervangt dit bij het laden. -->
+      <div style="max-width: 640px; margin: 0 auto; padding: 4rem 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6; color: #e8eaf0; background: #080c10">
+        <h1>Jaouad M'chichi</h1>
+        <p>Full-stack software developer: .NET, Java, React en TypeScript. Afstuderend HBO-ICT in januari 2027, open voor een junior-functie en freelance opdrachten.</p>
+        <p>
+          <a href="mailto:jaouadmchichi@hotmail.com" style="color: #00e5ff">jaouadmchichi@hotmail.com</a> ·
+          <a href="https://www.linkedin.com/in/jaouad-m-chichi-267a02273/" style="color: #00e5ff">LinkedIn</a> ·
+          <a href="https://github.com/JaouadM01" style="color: #00e5ff">GitHub</a>
+        </p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

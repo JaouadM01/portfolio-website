@@ -69,5 +69,19 @@ jobs:
           case "$host" in *@*) ;; *) echo "::error::DEPLOY_HOST moet de vorm gebruiker@host hebben"; ok=0 ;; esac
           [ "$ok" = 1 ] || exit 1
 
-          # De server draait voor deze sleutel altijd receive-release.sh; dat leest de tarball van stdin
-          tar -czf - -C dist . | ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes "$host"
+          if ! timeout 15 bash -c "</dev/tcp/${host#*@}/22" 2>/dev/null; then
+            echo "::error::Poort 22 van de VPS is niet bereikbaar vanaf de runner (firewall?)"; exit 1
+          fi
+
+          # De server draait voor deze sleutel altijd receive-release.sh; dat leest de tarball van stdin.
+          # Foutuitvoer van ssh komt bij een mislukking als melding in de samenvatting van de run.
+          set +e
+          tar -czf - -C dist . | ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o BatchMode=yes -o ConnectTimeout=20 "$host" 2> ssh.err
+          code=${PIPESTATUS[1]}
+          set -e
+          cat ssh.err >&2
+          if [ "$code" != 0 ]; then
+            grep -v '^\s*$' ssh.err | tail -5 | while IFS= read -r line; do echo "::error::ssh: $line"; done
+            exit "$code"
+          fi

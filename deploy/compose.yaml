@@ -1,0 +1,19 @@
+# Statische bestanden van het portfolio. Op de server: /home/ubuntu/portfolio/compose.yaml
+#
+# De centrale Caddy in /home/ubuntu/proxy doet HTTPS, security-headers en compressie,
+# en stuurt www.jaouadmchichi.nl door naar deze container via het netwerk 'web'.
+# site/current is een symlink naar de actieve release (zie deploy.ps1).
+services:
+  web:
+    image: caddy:2-alpine
+    container_name: portfolio-web
+    restart: unless-stopped
+    command: caddy file-server --root /srv/current --listen :80
+    volumes:
+      - ./site:/srv:ro
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

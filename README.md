@@ -3,7 +3,9 @@
 Single-page portfolio voor stagebedrijven, werkgevers en freelance klanten. Donker en tech-achtig, met een licht thema als
 alternatief. De stijlregels staan in [`context/project-styledocument.html`](context/project-styledocument.html).
 
-**Stack:** React 19 · TypeScript · Vite 8 · Motion · Zod (`zod/mini`) · EmailJS · Vitest · Playwright · Vercel
+**Live:** [www.jaouadmchichi.nl](https://www.jaouadmchichi.nl)
+
+**Stack:** React 19 · TypeScript · Vite 8 · Motion · Zod (`zod/mini`) · EmailJS · Vitest · Playwright · Caddy (eigen VPS)
 
 ## Wat erin zit
 
@@ -32,7 +34,7 @@ npm run dev          # http://localhost:5173
 | --- | --- |
 | `npm run dev` | ontwikkelserver |
 | `npm run build` | typecheck + productiebuild in `dist/` |
-| `npm run preview` | productiebuild lokaal bekijken, met dezelfde security-headers als op Vercel |
+| `npm run preview` | productiebuild lokaal bekijken, met dezelfde security-headers als in productie |
 | `npm test` | unit- en componenttests (Vitest + Testing Library) |
 | `npm run coverage` | tests met coverage (drempel 80%) |
 | `npm run test:e2e` | end-to-end tests (Playwright, desktop + mobiel) tegen de productiebuild |
@@ -66,7 +68,7 @@ Kopieer `.env.example` naar `.env.local`. Alles is optioneel:
 
 | Variabele | Waarvoor |
 | --- | --- |
-| `VITE_SITE_URL` | absolute URL voor canonical, Open Graph en sitemap. Op Vercel mag je hem leeg laten |
+| `VITE_SITE_URL` | absolute URL voor canonical, Open Graph en sitemap. `deploy.ps1` zet hem zelf op `https://www.jaouadmchichi.nl` |
 | `VITE_EMAILJS_SERVICE_ID` / `_TEMPLATE_ID` / `_PUBLIC_KEY` | contactformulier via EmailJS. Zonder deze drie wordt het een mailto-link |
 
 EmailJS instellen:
@@ -77,15 +79,54 @@ EmailJS instellen:
 - Zet er een **captcha** en een maandlimiet op. De public key staat in de browser, dus de limieten aan de serverkant
   zijn de echte bescherming tegen misbruik.
 
-## Deployen (Vercel)
+## Deployen (eigen VPS)
 
-1. Importeer de GitHub-repo in Vercel. Framework, build-commando en output staan al in `vercel.json`.
-2. Zet eventueel de `VITE_EMAILJS_*`-variabelen in de projectinstellingen.
-3. Elke push naar `main` wordt automatisch gedeployed.
+De site draait op een Ubuntu-VPS achter de centrale **Caddy**-proxy die daar alle domeinen bedient (`~/proxy`). Caddy
+regelt HTTPS (Let's Encrypt, vernieuwt zelf), de security-headers, compressie en caching, en stuurt het verkeer door
+naar de container `portfolio-web`, die alleen de statische bestanden serveert.
 
-`vercel.json` zet onder meer een strikte Content-Security-Policy. Voeg je een externe dienst toe (analytics, een andere
-API), zet die host dan bij `connect-src`, anders blokkeert de browser hem. `npm run preview` en de E2E-tests gebruiken
-dezelfde headers, dus zo'n probleem zie je al lokaal.
+```powershell
+.\deploy.ps1               # checks + build, uploaden, live zetten
+.\deploy.ps1 -SkipChecks   # alleen build, zonder lint en tests
+```
+
+`deploy.ps1` bouwt met `VITE_SITE_URL=https://www.jaouadmchichi.nl`, pakt `dist/` uit in
+`~/portfolio/site/releases/<tijdstip>` en zet de symlink `current` in één keer om. De laatste 5 releases blijven
+bewaard. Terugrollen: `ln -sfn releases/<oudere-release> ~/portfolio/site/current` op de server.
+
+Het script gebruikt de SSH-host `portfolio-vps`. Zet die in je eigen `~/.ssh/config` (het IP-adres hoort niet in deze
+openbare repo):
+
+```
+Host portfolio-vps
+    HostName <ip-van-de-vps>
+    User ubuntu
+```
+
+| Bestand | Doel |
+| --- | --- |
+| `deploy.ps1` | bouwen en uploaden, draait lokaal |
+| `deploy/compose.yaml` | container `portfolio-web` (`~/portfolio/compose.yaml` op de server) |
+| `deploy/Caddyfile.snippet` | het blok voor dit domein in `~/proxy/Caddyfile` |
+| `deploy/setup-server.sh` | eenmalige inrichting. Mag opnieuw na een wijziging in de twee bestanden hierboven: maakt een back-up van de Caddyfile, valideert en herlaadt Caddy zonder downtime |
+
+Een wijziging in de server-config doorvoeren:
+
+```powershell
+ssh portfolio-vps "mkdir -p /tmp/portfolio-setup"
+scp deploy/compose.yaml deploy/Caddyfile.snippet deploy/setup-server.sh portfolio-vps:/tmp/portfolio-setup/
+ssh portfolio-vps "bash /tmp/portfolio-setup/setup-server.sh"
+```
+
+### Security-headers
+
+De headers staan op twee plekken die gelijk moeten blijven: `vercel.json` (bron voor `npm run preview` en de E2E-tests)
+en `deploy/Caddyfile.snippet` (productie). Ze bevatten onder meer een strikte Content-Security-Policy. Voeg je een
+externe dienst toe (analytics, een andere API), zet die host dan in beide bestanden bij `connect-src`, anders blokkeert
+de browser hem. Omdat de preview dezelfde headers gebruikt, zie je zo'n probleem al lokaal.
+
+`vercel.json` werkt ook nog als je de site ooit weer op Vercel wilt zetten: repo importeren, `VITE_EMAILJS_*` in de
+projectinstellingen, klaar.
 
 ## Structuur
 
@@ -99,5 +140,6 @@ src/
   test/         testsetup en render-helper
 e2e/            Playwright-tests
 scripts/        beeldoptimalisatie
+deploy/         server-config voor de VPS (container + Caddy-blok + inrichtingsscript)
 context/        CV, design document en styleguide
 ```

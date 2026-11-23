@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Draaien op de Linux-server: altijd LF, ook bij een checkout op Windows
+*.sh text eol=lf
+deploy/** text eol=lf

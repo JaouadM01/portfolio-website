@@ -25,8 +25,8 @@ export const experience: readonly ExperienceItem[] = [
     period: '2025 – heden',
     location: 'Op afstand',
     bullets: [
-      "Mooiprijsje: headless React-webshop op Shopify, met het design en de URL's van het bestaande thema.",
-      'Noveliya: interactief design document en UX-map voor een luxe Shopify-webshop.',
+      'mooiprijsje.nl: audit, design document en een volledig nieuw Shopify-thema voor de webshop van een telefoonwinkel.',
+      'Noveliya: Shopify-webshop voor een luxe make-uptafel, van design document en UX-map tot live winkel.',
       'Leapforce: AI-chatbot op basis van de Gemini API voor klantvragen en leadgeneratie.',
     ],
   },
@@ -39,7 +39,7 @@ export const experience: readonly ExperienceItem[] = [
     period: '2026 – heden',
     location: 'Gouda',
     bullets: [
-      'Website en leerlingadministratie gebouwd voor Arabische les aan kinderen: inschrijven, goedkeuren en een maandelijks betalingsoverzicht.',
+      'arabischelessen.nl gebouwd voor Arabische les aan kinderen: inschrijven, een ouderportaal, een leerapp en een dashboard voor de administratie.',
     ],
   },
   {
@@ -70,6 +70,16 @@ export const experience: readonly ExperienceItem[] = [
       'Power BI-dashboards gemaakt met real-time inzicht in gebruikersdata voor gerichtere marketing.',
       'Backend-security verbeterd met Data Transfer Objects (DTO’s) en strengere autorisatie.',
     ],
+  },
+  {
+    id: 'praxis',
+    role: 'Verkoopmedewerker Sanitair, Workshop & Decoratie',
+    company: 'Praxis',
+    kind: 'job',
+    typeLabel: 'Parttime',
+    period: '2026 – heden',
+    bullets: [],
+    sideJob: true,
   },
   {
     id: 'thuisbezorgd',

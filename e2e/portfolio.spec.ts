@@ -30,8 +30,8 @@ test.describe('portfolio', () => {
   test('opent een project, deelt de link via de URL en sluit met Escape', async ({ page }) => {
     await page.goto('/#projecten')
 
-    await page.getByRole('button', { name: 'Mooiprijsje', exact: true }).click()
-    const dialog = page.getByRole('dialog', { name: 'Mooiprijsje' })
+    await page.getByRole('button', { name: 'mooiprijsje.nl', exact: true }).click()
+    const dialog = page.getByRole('dialog', { name: 'mooiprijsje.nl' })
     await expect(dialog).toBeVisible()
     await expect(page).toHaveURL(/#project-mooiprijsje$/)
 

@@ -1,12 +1,16 @@
 import type { ProjectImage } from '../types'
-import mooiprijsje1 from '../assets/projecten/mooiprijsje1.webp'
-import mooiprijsje2 from '../assets/projecten/mooiprijsje2.webp'
-import mooiprijsje3 from '../assets/projecten/mooiprijsje3.webp'
+import mooiprijsjeHome from '../assets/projecten/mooiprijsje-home.webp'
+import mooiprijsjeZoeken from '../assets/projecten/mooiprijsje-zoeken.webp'
+import mooiprijsjeCollectie from '../assets/projecten/mooiprijsje-collectie.webp'
+import mooiprijsjeProduct from '../assets/projecten/mooiprijsje-product.webp'
+import ilmHome from '../assets/projecten/3ilm-home.webp'
+import ilmInschrijven from '../assets/projecten/3ilm-inschrijven.webp'
 import ilm1 from '../assets/projecten/3ilm1.webp'
 import ilm2 from '../assets/projecten/3ilm2.webp'
-import noveliya1 from '../assets/projecten/noveliya1.webp'
-import noveliya2 from '../assets/projecten/noveliya2.webp'
-import noveliya3 from '../assets/projecten/noveliya3.webp'
+import noveliyaHome from '../assets/projecten/noveliya-home.webp'
+import noveliyaCollectie from '../assets/projecten/noveliya-collectie.webp'
+import noveliyaProduct from '../assets/projecten/noveliya-product.webp'
+import noveliyaAanpak from '../assets/projecten/noveliya-aanpak.webp'
 import sunnahmail from '../assets/projecten/sunnahmail.webp'
 import ticketbuilder1 from '../assets/projecten/ticketbuilder1.webp'
 import ticketbuilder2 from '../assets/projecten/ticketbuilder2.webp'
@@ -24,18 +28,22 @@ import aichat1 from '../assets/projecten/aichat1.webp'
 /** Screenshots per project-id. Projecten zonder screenshots krijgen een gegenereerde placeholder. */
 export const projectImages: Readonly<Record<string, readonly ProjectImage[]>> = {
   mooiprijsje: [
-    { src: mooiprijsje1, alt: 'Homepage van de Mooiprijsje-webshop met uitgelichte deals' },
-    { src: mooiprijsje2, alt: 'Collectiepagina met accessoires en filters' },
-    { src: mooiprijsje3, alt: 'Productpagina met prijs, voorraad en winkelwagenknop' },
+    { src: mooiprijsjeHome, alt: 'Homepage van mooiprijsje.nl met speciale deals en de topdeals van de week' },
+    { src: mooiprijsjeZoeken, alt: 'Live search op mooiprijsje.nl met productsuggesties voor de zoekterm iphone' },
+    { src: mooiprijsjeCollectie, alt: 'Collectiepagina Schermen met filters op merk en model en sorteeropties' },
+    { src: mooiprijsjeProduct, alt: 'Productpagina van een iPhone-scherm met prijs, voorraad en betaalmethoden' },
   ],
   '3ilm': [
-    { src: ilm1, alt: 'Dashboard met inschrijvingen: leerlingen, ouders, niveau en status' },
-    { src: ilm2, alt: 'Maandelijks betalingsoverzicht met betaalde en openstaande bedragen' },
+    { src: ilmHome, alt: 'Homepage van arabischelessen.nl met de praktische informatie over de zondagles' },
+    { src: ilmInschrijven, alt: 'Inschrijfformulier waarmee ouders een of meer kinderen aanmelden' },
+    { src: ilm1, alt: 'Dashboard met inschrijvingen: leerlingen, ouders, niveau en status (testdata)' },
+    { src: ilm2, alt: 'Maandelijks betalingsoverzicht met betaalde en openstaande bedragen (testdata)' },
   ],
   noveliya: [
-    { src: noveliya1, alt: 'Overzichtspagina van het Noveliya design document' },
-    { src: noveliya2, alt: 'Tabblad Design System met kleuren en typografie' },
-    { src: noveliya3, alt: "Tabblad Pages & UX met geannoteerde wireframes" },
+    { src: noveliyaHome, alt: 'Homepage van noveliya.nl met de Black Friday-hero en aftelklok' },
+    { src: noveliyaCollectie, alt: 'Sectie Kies jouw Élise met de vier kleuren van de kaptafel' },
+    { src: noveliyaProduct, alt: 'Productpagina van de Élise-kaptafel met actieprijs, aftelklok en Klarna' },
+    { src: noveliyaAanpak, alt: 'Sectie die de directe levering vergelijkt met de route via groothandel en winkel' },
   ],
   sunnahmail: [
     { src: sunnahmail, alt: 'Landingspagina van SunnahMail met het inschrijfformulier voor dagelijkse hadiths' },

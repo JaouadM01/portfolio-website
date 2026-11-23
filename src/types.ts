@@ -30,7 +30,8 @@ export interface ExperienceItem {
   kind: ExperienceKind
   /** Korte omschrijving van het dienstverband, bv. "Afstudeerstage" of "Parttime". */
   typeLabel: string
-  period: string
+  /** Optioneel: zonder periode toont de tijdlijn simpelweg geen datum. */
+  period?: string
   location?: string
   bullets: readonly string[]
   /** Bijbanen naast de studie worden ingeklapt weergegeven. */

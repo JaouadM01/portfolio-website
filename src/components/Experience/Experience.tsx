@@ -26,7 +26,7 @@ function TimelineItem({ item, index }: { item: ExperienceItem; index: number }) 
               <h3 className="tl-role">{item.role}</h3>
               <span className={`badge badge--${item.kind}`}>{item.typeLabel}</span>
             </div>
-            <span className="tl-period">{item.period}</span>
+            {item.period && <span className="tl-period">{item.period}</span>}
           </header>
           <p className="tl-meta">
             <span className="tl-company">{item.company}</span>
@@ -95,7 +95,7 @@ export default function Experience() {
                         {job.location && ` · ${job.location}`}
                       </p>
                     </div>
-                    <span className="tl-period">{job.period}</span>
+                    {job.period && <span className="tl-period">{job.period}</span>}
                   </li>
                 ))}
               </ul>

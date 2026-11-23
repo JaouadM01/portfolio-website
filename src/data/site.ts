@@ -18,9 +18,9 @@ export const site = {
 export const socials: readonly SocialLink[] = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/jaouad-m-chichi-267a02273/',
+    href: 'https://www.linkedin.com/in/jaouadmchichi/',
     icon: 'linkedin',
-    handle: 'jaouad-m-chichi',
+    handle: 'jaouadmchichi',
   },
   {
     label: 'GitHub',

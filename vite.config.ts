@@ -112,8 +112,9 @@ export default defineConfig(({ mode, command }) => {
     preview: { headers: previewHeaders },
     build: {
       target: 'es2022',
-      // Assets onder 4 kB inline; screenshots blijven losse, cachebare bestanden.
-      assetsInlineLimit: 4096,
+      // Kleine assets inline, behalve fonts: een font als data:-URI wordt geblokkeerd door de
+      // CSP (font-src 'self'). Fontsource heeft subsets die kleiner zijn dan 4 kB.
+      assetsInlineLimit: (filePath: string) => (/\.(woff2?|ttf|otf)$/.test(filePath) ? false : undefined),
     },
     test: {
       environment: 'jsdom',

@@ -3,12 +3,18 @@ import type { ExperienceItem } from '../types'
 export const experience: readonly ExperienceItem[] = [
   {
     id: 'new-story',
-    role: 'Afstudeerstagiair Software Development',
+    role: 'Afstudeerstagiair Software Engineering',
     company: 'New Story',
     kind: 'internship',
     typeLabel: 'Afstudeerstage',
-    period: '2026',
-    bullets: [],
+    period: 'aug. 2026 – jan. 2027',
+    location: 'Noordwijk',
+    bullets: [
+      'Bouw de backend van een systeem dat de developer experience en de kwaliteit van de softwarelevering meetbaar maakt, voor zo’n 40 developers in acht teams.',
+      'Vijf meetstelsels vergeleken (DORA, DevEx, SPACE, Flow en DX Core 4) met knock-outcriteria en een beslismatrix, en daarmee de keuze voor DORA plus DevEx onderbouwd.',
+      'Backend in Go met koppelingen op GitHub, Bitbucket en Jira. Een nieuwe bron vraagt alleen een nieuwe vertaallaag; de rekenregels blijven gelijk.',
+      'Privacy by design: pseudonimisering met HMAC-SHA256 en rapportage alleen per team, nooit per persoon.',
+    ],
   },
   {
     id: 'freelance',

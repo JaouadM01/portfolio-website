@@ -23,6 +23,24 @@ export const projects: readonly Project[] = [
     featured: true,
   },
   {
+    id: 'devex-meting',
+    name: 'Developer Experience-meting',
+    tagline: 'Backend die developer experience en softwarelevering meetbaar maakt voor zo’n 40 developers.',
+    description:
+      'Afstudeeropdracht bij New Story. Het systeem combineert data uit GitHub, Bitbucket en Jira met een periodieke enquête onder developers, zodat per team zichtbaar wordt hoe developers hun werk ervaren en hoe de softwarelevering zich over tijd ontwikkelt. Een voorspelmodel projecteert de trends.',
+    highlights: [
+      'Meetstelsel onderbouwd met knock-outcriteria en een beslismatrix: DORA voor de softwarelevering, het DevEx Framework voor de enquête, getoetst met SPACE.',
+      'Koppelingen met de REST-API’s van GitHub, Bitbucket en Jira, met per bron een eigen vertaallaag, zodat de rekenregels voor elke bron hetzelfde blijven.',
+      'Historie gefaseerd en hervatbaar inladen, binnen de rate-limits van de API’s.',
+      'Pseudonimisering met HMAC-SHA256; de API rapporteert alleen per team, nooit per persoon.',
+      'Enquêtesysteem met inloggen, uitnodigingen en herinneringen per mail; het voorspelmodel draait als losse Python-batch.',
+    ],
+    kind: 'internship',
+    period: 'aug. 2026 – jan. 2027',
+    tech: ['Go', 'Python', 'REST API', 'GitHub API', 'Bitbucket API', 'Jira API', 'DORA', 'DevEx', 'Coolify'],
+    note: 'Intern project bij New Story, loopt tot januari 2027 · code en screenshots zijn niet openbaar',
+  },
+  {
     id: '3ilm',
     name: '3ilm',
     tagline: 'Website en leerlingadministratie voor Arabische les aan kinderen in Gouda.',

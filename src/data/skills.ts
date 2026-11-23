@@ -4,7 +4,7 @@ export const skills: readonly SkillGroup[] = [
   {
     category: 'Talen',
     color: 'cyan',
-    items: ['C#', 'Java', 'TypeScript', 'JavaScript', 'Python', 'SQL', 'HTML / CSS'],
+    items: ['C#', 'Java', 'Go', 'TypeScript', 'JavaScript', 'Python', 'SQL', 'HTML / CSS'],
   },
   {
     category: 'Frameworks',

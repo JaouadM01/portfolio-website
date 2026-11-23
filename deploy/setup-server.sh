@@ -28,6 +28,9 @@ if [ ! -e "$APP/site/current" ]; then
 fi
 chmod -R a+rX "$APP/site"
 
+echo "==> Deploy-ontvanger voor GitHub Actions"
+install -m 755 "$HERE/receive-release.sh" "$APP/receive-release.sh"
+
 echo "==> Container portfolio-web"
 install -m 644 "$HERE/compose.yaml" "$APP/compose.yaml"
 sudo docker compose -f "$APP/compose.yaml" up -d

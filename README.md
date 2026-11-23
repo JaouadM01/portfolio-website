@@ -85,6 +85,17 @@ De site draait op een Ubuntu-VPS achter de centrale **Caddy**-proxy die daar all
 regelt HTTPS (Let's Encrypt, vernieuwt zelf), de security-headers, compressie en caching, en stuurt het verkeer door
 naar de container `portfolio-web`, die alleen de statische bestanden serveert.
 
+**Automatisch:** elke push naar `main` gaat via GitHub Actions (`.github/workflows/deploy.yml`) live, maar alleen als
+typecheck, lint, tests en build slagen. De voortgang zie je in het tabblad *Actions*. Daar kan je ook handmatig een
+deploy starten (*Deploy > Run workflow*).
+
+De workflow gebruikt een eigen SSH-sleutel die op de server is vastgezet op `~/portfolio/receive-release.sh`
+(`restrict,command=...` in `~/.ssh/authorized_keys`). Met die sleutel kan je dus alleen een release aanleveren, geen
+shell openen. Repository-secrets: `DEPLOY_HOST` (`ubuntu@<ip>`), `DEPLOY_KEY` (privésleutel) en `DEPLOY_KNOWN_HOSTS`
+(`ssh-keyscan -t ed25519 <ip>`). Sleutel intrekken: de regel `github-actions-deploy` uit `authorized_keys` halen.
+
+**Handmatig** vanaf je eigen pc, bijvoorbeeld als GitHub plat ligt:
+
 ```powershell
 .\deploy.ps1               # checks + build, uploaden, live zetten
 .\deploy.ps1 -SkipChecks   # alleen build, zonder lint en tests
@@ -105,7 +116,9 @@ Host portfolio-vps
 
 | Bestand | Doel |
 | --- | --- |
+| `.github/workflows/deploy.yml` | automatische deploy bij elke push naar `main` |
 | `deploy.ps1` | bouwen en uploaden, draait lokaal |
+| `deploy/receive-release.sh` | ontvangt een release op de server en zet hem live (vast commando van de Actions-sleutel) |
 | `deploy/compose.yaml` | container `portfolio-web` (`~/portfolio/compose.yaml` op de server) |
 | `deploy/Caddyfile.snippet` | het blok voor dit domein in `~/proxy/Caddyfile` |
 | `deploy/setup-server.sh` | eenmalige inrichting. Mag opnieuw na een wijziging in de twee bestanden hierboven: maakt een back-up van de Caddyfile, valideert en herlaadt Caddy zonder downtime |
@@ -114,7 +127,7 @@ Een wijziging in de server-config doorvoeren:
 
 ```powershell
 ssh portfolio-vps "mkdir -p /tmp/portfolio-setup"
-scp deploy/compose.yaml deploy/Caddyfile.snippet deploy/setup-server.sh portfolio-vps:/tmp/portfolio-setup/
+scp deploy/compose.yaml deploy/Caddyfile.snippet deploy/setup-server.sh deploy/receive-release.sh portfolio-vps:/tmp/portfolio-setup/
 ssh portfolio-vps "bash /tmp/portfolio-setup/setup-server.sh"
 ```
 

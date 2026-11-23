@@ -1,0 +1,59 @@
+# Elke push naar main: checks + build, en bij groen licht live op de VPS.
+# Handmatig starten kan ook: tabblad Actions > Deploy > Run workflow.
+#
+# Benodigde repository-secrets (Settings > Secrets and variables > Actions):
+#   DEPLOY_HOST         ubuntu@<ip-van-de-vps>
+#   DEPLOY_KEY          privé-helft van de deploy-sleutel (op de server vastgezet op receive-release.sh)
+#   DEPLOY_KNOWN_HOSTS  host-sleutel van de VPS (uitvoer van: ssh-keyscan -t ed25519 <ip>)
+# Optioneel, als repository-variabelen (geen secrets, ze komen toch in de browser-bundle):
+#   VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Nooit twee deploys tegelijk; een nieuwere push wacht netjes tot de vorige klaar is
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Dependencies
+        run: npm ci
+
+      - name: Typecheck, lint, tests en build
+        run: npm run check
+        env:
+          VITE_SITE_URL: https://www.jaouadmchichi.nl
+          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
+
+      - name: Uploaden en live zetten
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # De server draait voor deze sleutel altijd receive-release.sh; dat leest de tarball van stdin
+          tar -czf - -C dist . | ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes "$DEPLOY_HOST"

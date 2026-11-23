@@ -91,8 +91,10 @@ deploy starten (*Deploy > Run workflow*).
 
 De workflow gebruikt een eigen SSH-sleutel die op de server is vastgezet op `~/portfolio/receive-release.sh`
 (`restrict,command=...` in `~/.ssh/authorized_keys`). Met die sleutel kan je dus alleen een release aanleveren, geen
-shell openen. Repository-secrets: `DEPLOY_HOST` (`ubuntu@<ip>`), `DEPLOY_KEY` (privésleutel) en `DEPLOY_KNOWN_HOSTS`
-(`ssh-keyscan -t ed25519 <ip>`). Sleutel intrekken: de regel `github-actions-deploy` uit `authorized_keys` halen.
+shell openen. Repository-secrets: `DEPLOY_HOST` (`ubuntu@<ip>`) en `DEPLOY_KEY` (privésleutel). De host-sleutel van
+de VPS staat in de workflow zelf (`VPS_HOST_KEY`, niet geheim). Is de server opnieuw geïnstalleerd, haal hem dan
+opnieuw op met `ssh-keyscan -t ed25519 <ip>`. Sleutel intrekken: de regel `github-actions-deploy` uit
+`authorized_keys` halen.
 
 **Handmatig** vanaf je eigen pc, bijvoorbeeld als GitHub plat ligt:
 
